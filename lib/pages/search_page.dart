@@ -10,10 +10,7 @@ import '../Config/components/text_input.dart';
 
 class SearchPage extends StatefulWidget {
   List category = [
-    {'text': 'Laptops', 'icon': FontAwesomeIcons.computer},
-    {'text': 'Screens', 'icon': Icons.monitor},
-    {'text': 'Hard Drives', 'icon': FontAwesomeIcons.hardDrive},
-    {'text': 'Rams', 'icon': FontAwesomeIcons.chrome},
+    {'text': 'trs', 'icon': FontAwesomeIcons.arrowRightArrowLeft},
   ];
 
   SearchPage({
@@ -40,9 +37,7 @@ class _SearchPageState extends State<SearchPage> {
             itemBuilder: (context, index) => ItemCategory(
               text: widget.category[index]['text'],
               icon: widget.category[index]['icon'],
-              onTap: () {
-                print(index);
-              },
+              onTap: () {},
             ),
           ),
         )
