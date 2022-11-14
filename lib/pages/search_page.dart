@@ -1,7 +1,19 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:e_maecket/Config/size_config.dart';
+import 'package:e_maecket/Config/style.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../Config/components/item_category.dart';
+import '../Config/components/text_input.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({
+  List category = [
+    {'text': 'trs', 'icon': FontAwesomeIcons.arrowRightArrowLeft},
+  ];
+
+  SearchPage({
     Key? key,
   }) : super(key: key);
 
@@ -12,6 +24,24 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        Container(),
+        text_input(context, 'Search here ...', icon: Icons.search),
+        Expanded(
+          child: GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemCount: widget.category.length,
+            itemBuilder: (context, index) => ItemCategory(
+              text: widget.category[index]['text'],
+              icon: widget.category[index]['icon'],
+              onTap: () {},
+            ),
+          ),
+        )
+      ],
+    );
   }
 }

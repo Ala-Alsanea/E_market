@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'colors.dart';
+
+import '../Config/style.dart';
 
 class SinglePage extends StatefulWidget {
   SinglePage({
@@ -99,7 +102,7 @@ class _SinglePageState extends State<SinglePage> {
                               child: Text(
                                 newData[widget.index]['year'],
                                 style: TextStyle(
-                                  color: AppColor.secondTextColor,
+                                  color: secondTextColor,
                                   fontSize: 16.0,
                                 ),
                               ),
@@ -118,7 +121,7 @@ class _SinglePageState extends State<SinglePage> {
                                   newData[widget.index]['name'],
                                   style: TextStyle(
                                     fontSize: 24.0,
-                                    color: AppColor.mainTextColor,
+                                    color: mainTextColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -132,7 +135,7 @@ class _SinglePageState extends State<SinglePage> {
                                   newData[widget.index]['price'],
                                   style: TextStyle(
                                     fontSize: 21.0,
-                                    color: AppColor.mainTextColor,
+                                    color: mainTextColor,
                                   ),
                                 ),
                               ],
@@ -152,7 +155,7 @@ class _SinglePageState extends State<SinglePage> {
                                   width: 100.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    color: AppColor.backgroundColor,
+                                    color: backgroundColor,
                                   ),
                                   child: Center(
                                     child: Text(
@@ -174,7 +177,7 @@ class _SinglePageState extends State<SinglePage> {
                                   width: 100.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    color: AppColor.backgroundColor,
+                                    color: backgroundColor,
                                   ),
                                   child: Center(
                                     child: Text(
@@ -193,7 +196,7 @@ class _SinglePageState extends State<SinglePage> {
                                   width: 100.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    color: AppColor.backgroundColor,
+                                    color: backgroundColor,
                                   ),
                                   child: Center(
                                     child: Text(
@@ -218,7 +221,7 @@ class _SinglePageState extends State<SinglePage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20.0,
-                                  color: AppColor.mainTextColor,
+                                  color: mainTextColor,
                                 ),
                               ),
                             ),
@@ -252,7 +255,7 @@ class _SinglePageState extends State<SinglePage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20.0,
-                                  color: AppColor.mainTextColor,
+                                  color: mainTextColor,
                                 ),
                               ),
                             ),
@@ -284,7 +287,7 @@ class _SinglePageState extends State<SinglePage> {
                       height: 70.0,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColor.heartRedColor,
+                          color: heartRedColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),

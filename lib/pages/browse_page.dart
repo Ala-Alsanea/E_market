@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
-import '../widgets/item_list.dart';
+import '../Config/components/item_list.dart';
 
 class BrowsePage extends StatefulWidget {
   const BrowsePage({

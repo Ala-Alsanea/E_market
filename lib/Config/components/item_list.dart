@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
-import 'single_car.dart';
+import '../../pages/single_car.dart';
+import '../style.dart';
 
 class ItemList extends StatefulWidget {
   var newData;
@@ -67,7 +67,7 @@ class _ItemListState extends State<ItemList> {
                 Text(
                   widget.newData[widget.index]['name'],
                   style: TextStyle(
-                    color: AppColor.mainTextColor,
+                    color: mainTextColor,
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -79,7 +79,7 @@ class _ItemListState extends State<ItemList> {
                       widget.newData[widget.index]['speed'],
                       style: TextStyle(
                         fontSize: 13.0,
-                        color: AppColor.secondTextColor,
+                        color: secondTextColor,
                       ),
                     ),
                     const SizedBox(
@@ -89,7 +89,7 @@ class _ItemListState extends State<ItemList> {
                       "\$ " + widget.newData[widget.index]['price'],
                       style: TextStyle(
                         fontSize: 13.0,
-                        color: AppColor.secondTextColor,
+                        color: secondTextColor,
                       ),
                     ),
                     const SizedBox(

@@ -5,10 +5,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'Config/style.dart';
 import 'pages/browse_page.dart';
 import 'pages/compare_page.dart';
 import 'pages/search_page.dart';
-import 'widgets/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,26 +37,19 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-        dragDevices: {
-          PointerDeviceKind.mouse,
-          PointerDeviceKind.touch,
-          PointerDeviceKind.stylus,
-          PointerDeviceKind.unknown
-        },
-      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: (isThePage)
             ? AppBar(
                 elevation: 0,
-                backgroundColor: AppColor.gradientColor1,
+                backgroundColor: backgroundColor,
                 centerTitle: true,
-                title: Text('E Market'),
+                title: Text('E Market', style: bold_24(color: gradientColor1)),
+                titleTextStyle: TextStyle(color: gradientColor1),
               )
             : null,
         extendBody: true,
-        backgroundColor: AppColor.backgroundColor,
+        backgroundColor: backgroundColor,
         bottomNavigationBar: Container(
           margin: EdgeInsets.symmetric(horizontal: 9),
           padding: EdgeInsets.all(18.0),
@@ -78,8 +71,8 @@ class _MyAppState extends State<MyApp> {
               gap: 13.0,
               backgroundColor: Colors.white,
               tabBorderRadius: 40.0,
-              tabBackgroundColor: AppColor.gradientColor1,
-              activeColor: AppColor.whiteColor,
+              tabBackgroundColor: gradientColor1,
+              activeColor: whiteColor,
               color: Colors.black.withOpacity(0.55),
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
@@ -92,7 +85,7 @@ class _MyAppState extends State<MyApp> {
               },
               tabs: [
                 GButton(
-                  icon: FontAwesomeIcons.scroll,
+                  icon: FontAwesomeIcons.house,
                   text: "Browse",
                   padding: EdgeInsets.only(
                     left: 20.0,
@@ -102,8 +95,8 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 GButton(
-                  icon: FontAwesomeIcons.magnifyingGlass,
-                  text: "Search",
+                  icon: FontAwesomeIcons.filter,
+                  text: "Filter",
                   padding: EdgeInsets.only(
                     left: 20.0,
                     right: 20.0,
