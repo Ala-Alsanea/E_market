@@ -24,7 +24,7 @@ class _DetailPageState extends State<DetailPage> {
   //
 
   checkNullText(text) {
-    if (text == null) return '-';
+    if (text == null) return 'Non';
 
     return text;
   }
@@ -97,7 +97,7 @@ class _DetailPageState extends State<DetailPage> {
                                             color: whiteColor, width: 2),
                                         color: primaryColor,
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                            BorderRadius.circular(50)),
                                     child: Icon(
                                       FontAwesomeIcons.arrowLeft,
                                       color: Colors.white,
@@ -123,19 +123,17 @@ class _DetailPageState extends State<DetailPage> {
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.03),
-                                //
+                                // ? price
                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 25.0),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      snapshot.data![0].attributes!.price
-                                          .toString(),
-                                      style: TextStyle(
-                                        color: secondTextColor,
-                                        fontSize: 16.0,
-                                      ),
+                                      "\$" +
+                                          snapshot.data![0].attributes!.price
+                                              .toString(),
+                                      style: bold_16(color: primaryColor),
                                     ),
                                   ),
                                 ),
@@ -243,7 +241,7 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                       const SizedBox(width: 10.0),
                                       Expanded(child: Container()),
-                                      //? ramr size
+                                      //? ram size
 
                                       Container(
                                         height: 40.0,
@@ -273,76 +271,142 @@ class _DetailPageState extends State<DetailPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.025,
-                                ),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.025),
+                                // ? store
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 25.0,
                                   ),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'Model S',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                        color: mainTextColor,
-                                      ),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "Store : " +
+                                              checkNullText(snapshot
+                                                  .data![0]
+                                                  ?.attributes
+                                                  ?.store
+                                                  ?.data
+                                                  ?.attributes
+                                                  ?.name
+                                                  .toString()),
+                                          style: bold_18(color: mainTextColor)),
                                     ),
                                   ),
                                 ),
+
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.015,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 25.0,
-                                  ),
-                                  child: Text(
-                                    """Dual Motor All-Wheel Drive unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.""",
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.025,
-                                ),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.025),
+                                //? stock
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0,
+                                      horizontal: 25.0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: checkNullText(snapshot
+                                              .data![0]
+                                              ?.attributes
+                                              ?.stock
+                                              ?.data
+                                              ?.attributes
+                                              ?.name
+                                              .toString()),
+                                          style:
+                                              normal_16(color: mainTextColor)),
+                                    ),
                                   ),
+                                ),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.025),
+                                // ? Details
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25.0),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'Details',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                        color: mainTextColor,
-                                      ),
+                                    child: RichText(
+                                      overflow: TextOverflow.clip,
+                                      text: TextSpan(
+                                          text: 'Details \n\n',
+                                          style: bold_24(color: mainTextColor),
+                                          children: [
+                                            TextSpan(
+                                                text: "  status : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        ?.attributes
+                                                        ?.status
+                                                        ?.data
+                                                        ?.attributes
+                                                        ?.name
+                                                        .toString()) +
+                                                    " ",
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                            TextSpan(
+                                                text: "screenSize : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        ?.attributes
+                                                        ?.screenSize
+                                                        ?.data
+                                                        ?.attributes
+                                                        ?.name
+                                                        .toString()) +
+                                                    " ",
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                            TextSpan(
+                                                text: " OS : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        ?.attributes
+                                                        ?.operatingSystem
+                                                        ?.data
+                                                        ?.attributes
+                                                        ?.name
+                                                        .toString()) +
+                                                    " ",
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                            TextSpan(
+                                                text: "  ram speed : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        ?.attributes
+                                                        ?.ramSpeed
+                                                        ?.data
+                                                        ?.attributes
+                                                        ?.name
+                                                        .toString()) +
+                                                    " ",
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                            TextSpan(
+                                                text: " ram type : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        ?.attributes
+                                                        ?.ramType
+                                                        ?.data
+                                                        ?.attributes
+                                                        ?.name
+                                                        .toString()) +
+                                                    " ",
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                          ]),
                                     ),
                                   ),
                                 ),
                                 SizedBox(
                                   height: MediaQuery.of(context).size.height *
                                       0.015,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 25.0,
-                                  ),
-                                  child: Text(
-                                    """Dual Motor All-Wheel Drive unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.""",
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      height: 1.5,
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
