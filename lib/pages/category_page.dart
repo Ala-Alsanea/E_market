@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables
 
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
@@ -15,10 +15,12 @@ import '../api/app_notifier.dart';
 import '../api/model/products.dart';
 
 class CategoryPage extends StatefulWidget {
-  var category;
+  var title;
+  var apiEntry;
 
   CategoryPage({
-    required this.category,
+    required this.title,
+    required this.apiEntry,
     super.key,
   });
 
@@ -38,7 +40,7 @@ class _CategoryPageState extends State<CategoryPage> {
         elevation: 0,
         backgroundColor: backgroundColor,
         centerTitle: true,
-        title: Text(widget.category, style: bold_24(color: primaryColor)),
+        title: Text(widget.title, style: bold_24(color: primaryColor)),
         titleTextStyle: TextStyle(color: primaryColor),
       ),
       body: Container(
@@ -46,9 +48,7 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Consumer<AppNotifier>(
           builder: (context, notifier, child) => FutureBuilder(
               // !: the url
-              future: notifier.getAllProducts(
-                  'products?populate=*&filters[type][name][\$containsi]=' +
-                      widget.category.toString()),
+              future: notifier.getAllProducts(widget.apiEntry),
               //
               builder: (context, AsyncSnapshot<List<Products>> snapshot) {
                 // !!!
