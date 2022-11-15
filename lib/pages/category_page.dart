@@ -52,37 +52,31 @@ class _CategoryPageState extends State<CategoryPage> {
                   return GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1),
+                        crossAxisCount: 2),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
                       // ? debug
                       print(ConnectApi().Storge);
                       print(snapshot.data![index].attributes!.images!.data![0]
-                          ?.attributes!.formats!.medium!.url
+                          ?.attributes!.url
                           .toString());
 
                       //
 
                       return CardCategoryItem(
                         index: snapshot.data![index].id.toString(),
-                        currency: snapshot.data![index].attributes!.currency
+                        currency: snapshot
+                            .data![index].attributes!.currency!.data
                             .toString(),
                         name:
                             snapshot.data![index].attributes!.model.toString(),
                         price:
                             snapshot.data![index].attributes!.price.toString(),
                         img: snapshot.data![index].attributes!.images!.data![0]
-                            ?.attributes!.formats!.medium!.url
+                            ?.attributes!.url
                             .toString(),
                       );
                     },
-                  );
-                } else if (!snapshot.hasData) {
-                  return Center(
-                    child: Text(
-                      'no data found',
-                      style: bold_24(color: gradientColor1),
-                    ),
                   );
                 } else {
                   return Center(

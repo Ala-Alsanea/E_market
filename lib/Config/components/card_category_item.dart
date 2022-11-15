@@ -56,8 +56,11 @@ class CardCategoryItem extends StatelessWidget {
             SizedBox(height: 3),
             Column(
               children: [
+                // ! with condition
                 Text(
-                  name,
+                  (name.toString().length > 10)
+                      ? name.toString().substring(0, 10) + "..."
+                      : name.toString(),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
