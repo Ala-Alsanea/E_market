@@ -17,6 +17,10 @@ const Color tealCircleColor = Color(0xFF52b8b2);
 const Color blueCircleColor = Color(0xFF526fb8);
 const Color redPurpleCircleColor = Color(0xFFB85284);
 const Color yellowCircleColor = Color(0xFFF2CB6C);
+//
+const Color lightTextColor = Color(0xFFedf4ed);
+const Color darkTextColor = Color(0xFF022b3a);
+const Color primaryColor = Color(0xFF2a9d8f);
 
 TextStyle normal_24({color = whiteColor}) {
   return TextStyle(
