@@ -12,6 +12,7 @@ import '../Config/components/item_list.dart';
 import '../Config/components/productCard.dart';
 import '../api/app_notifier.dart';
 import '../api/model/products.dart';
+import 'detail_page.dart';
 
 class BrowsePage extends StatefulWidget {
   BrowsePage({
@@ -111,6 +112,19 @@ class _BrowsePageState extends State<BrowsePage> {
                                       price: snapshot
                                           .data![index].attributes!.price!
                                           .toString(),
+                                      onTap: () {
+                                        setState(() {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailPage(
+                                                  id: snapshot.data![index].id
+                                                      .toString(),
+                                                ),
+                                              ));
+                                        });
+                                      },
                                     );
                                   },
                                 ),
