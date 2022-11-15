@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../pages/single_car.dart';
+import '../../pages/detail_page.dart';
 import '../style.dart';
 
 class ItemList extends StatefulWidget {
@@ -29,8 +29,7 @@ class _ItemListState extends State<ItemList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  SinglePage(index: widget.index),
+              builder: (BuildContext context) => DetailPage(),
             ),
           );
         });
