@@ -11,10 +11,10 @@ import '../Config/components/text_input.dart';
 
 class SearchPage extends StatefulWidget {
   List category = [
-    {'text': 'Laptops', 'icon': FontAwesomeIcons.computer},
-    {'text': 'Screens', 'icon': Icons.monitor},
-    {'text': 'Hard Drives', 'icon': FontAwesomeIcons.hardDrive},
-    {'text': 'Rams', 'icon': FontAwesomeIcons.chrome},
+    {'text': 'Laptop', 'icon': FontAwesomeIcons.computer},
+    {'text': 'Screen', 'icon': Icons.monitor},
+    {'text': 'Hard Drive', 'icon': FontAwesomeIcons.hardDrive},
+    {'text': 'Ram', 'icon': FontAwesomeIcons.chrome},
   ];
 
   SearchPage({
@@ -47,7 +47,8 @@ class _SearchPageState extends State<SearchPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CategoryPage(),
+                        builder: (context) => CategoryPage(
+                            category: widget.category[index]['text']),
                       ));
                 });
               },

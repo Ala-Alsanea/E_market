@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ConnectApi {
   final String _API = 'https://fb.amjadfqs.me/api/';
+  final String Storge = 'https://fb.amjadfqs.me';
 
   getAllData(entryPoint) async {
     print(_API + entryPoint);
