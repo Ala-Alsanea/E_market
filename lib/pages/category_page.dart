@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, avoid_print
 
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
@@ -49,7 +49,9 @@ class _CategoryPageState extends State<CategoryPage> {
               future: notifier.getAllProducts(
                   'products?populate=*&filters[type][name][\$containsi]=' +
                       widget.category.toString()),
+              //
               builder: (context, AsyncSnapshot<List<Products>> snapshot) {
+                // !!!
                 if (snapshot.hasData) {
                   return GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -62,9 +64,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       print(snapshot.data![index].attributes!.images!.data![0]
                           ?.attributes!.url
                           .toString());
-
                       //
-
                       return CardCategoryItem(
                         index: snapshot.data![index].id.toString(),
                         currency: snapshot
@@ -78,13 +78,13 @@ class _CategoryPageState extends State<CategoryPage> {
                             ?.attributes!.url
                             .toString(),
                         onTap: () {
-                          print(snapshot.data![index].id.toString());
-
                           setState(() {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DetailPage(),
+                                  builder: (context) => DetailPage(
+                                    id: snapshot.data![index].id.toString(),
+                                  ),
                                 ));
                           });
                         },
