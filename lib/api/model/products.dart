@@ -197,24 +197,109 @@ class ProductsAttributesImages {
   }
 }
 
-class ProductsAttributesCurrency {
+class ProductsAttributesCurrencyDataAttributes {
 /*
 {
-  "data": null
+  "name": "USD",
+  "symbol": "$",
+  "createdAt": "2022-11-06T12:40:35.522Z",
+  "updatedAt": "2022-11-06T12:40:35.522Z"
 } 
 */
 
-  String? data;
+  String? name;
+  String? symbol;
+  String? createdAt;
+  String? updatedAt;
+
+  ProductsAttributesCurrencyDataAttributes({
+    this.name,
+    this.symbol,
+    this.createdAt,
+    this.updatedAt,
+  });
+  ProductsAttributesCurrencyDataAttributes.fromJson(Map<String, dynamic> json) {
+    name = json['name']?.toString();
+    symbol = json['symbol']?.toString();
+    createdAt = json['createdAt']?.toString();
+    updatedAt = json['updatedAt']?.toString();
+  }
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    data['symbol'] = symbol;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    return data;
+  }
+}
+
+class ProductsAttributesCurrencyData {
+/*
+{
+  "id": 1,
+  "attributes": {
+    "name": "USD",
+    "symbol": "$",
+    "createdAt": "2022-11-06T12:40:35.522Z",
+    "updatedAt": "2022-11-06T12:40:35.522Z"
+  }
+} 
+*/
+
+  int? id;
+  ProductsAttributesCurrencyDataAttributes? attributes;
+
+  ProductsAttributesCurrencyData({
+    this.id,
+    this.attributes,
+  });
+  ProductsAttributesCurrencyData.fromJson(Map<String, dynamic> json) {
+    id = json['id']?.toInt();
+    attributes = (json['attributes'] != null)
+        ? ProductsAttributesCurrencyDataAttributes.fromJson(json['attributes'])
+        : null;
+  }
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    if (attributes != null) {
+      data['attributes'] = attributes!.toJson();
+    }
+    return data;
+  }
+}
+
+class ProductsAttributesCurrency {
+/*
+{
+  "data": {
+    "id": 1,
+    "attributes": {
+      "name": "USD",
+      "symbol": "$",
+      "createdAt": "2022-11-06T12:40:35.522Z",
+      "updatedAt": "2022-11-06T12:40:35.522Z"
+    }
+  }
+} 
+*/
+
+  ProductsAttributesCurrencyData? data;
 
   ProductsAttributesCurrency({
     this.data,
   });
   ProductsAttributesCurrency.fromJson(Map<String, dynamic> json) {
-    data = json['data']?.toString();
+    data = (json['data'] != null)
+        ? ProductsAttributesCurrencyData.fromJson(json['data'])
+        : null;
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['data'] = this.data;
+    if (data != null) {
+      data['data'] = this.data!.toJson();
+    }
     return data;
   }
 }
@@ -1876,7 +1961,15 @@ class ProductsAttributes {
     }
   },
   "currency": {
-    "data": null
+    "data": {
+      "id": 1,
+      "attributes": {
+        "name": "USD",
+        "symbol": "$",
+        "createdAt": "2022-11-06T12:40:35.522Z",
+        "updatedAt": "2022-11-06T12:40:35.522Z"
+      }
+    }
   },
   "images": {
     "data": [
@@ -2243,7 +2336,15 @@ class Products {
       }
     },
     "currency": {
-      "data": null
+      "data": {
+        "id": 1,
+        "attributes": {
+          "name": "USD",
+          "symbol": "$",
+          "createdAt": "2022-11-06T12:40:35.522Z",
+          "updatedAt": "2022-11-06T12:40:35.522Z"
+        }
+      }
     },
     "images": {
       "data": [
