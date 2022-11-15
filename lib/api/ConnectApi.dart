@@ -4,69 +4,57 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ConnectApi {
-  final String _localUrl = 'ala.amjadfqs.me';
-  final String _storageUrl = 'https://ala.amjadfqs.me/storage/';
+  final String _API = 'https://fb.amjadfqs.me/api/';
 
-  getStorageUrl() {
-    return _storageUrl;
-  }
-
-  getAllData({entryPoint = "", token = ''}) async {
-    print(_localUrl + entryPoint);
-
-    //
-
-    var url = Uri.https(_localUrl, '/api/' + entryPoint);
-
-    http.Response response = await http.get(
-      url,
-      headers: _setHeader(token: token),
-    );
+  getAllData(entryPoint) async {
+    print(_API + entryPoint);
+    var url = Uri.parse(_API + entryPoint);
+    var response = await http.get(url);
+    print(response.statusCode);
     try {
-      print(response.statusCode);
       if (response.statusCode == 200) {
-        return response;
+        return response.body;
       }
-      return 'false';
+      return false;
     } catch (e) {
       print(e);
-      return 'failed';
+      return false;
     }
   }
 //
 
-  postData({data = '', entryPoint = "", token = ''}) async {
-    // print(_localUrl + entryPoint);
+  // postData({data = '', entryPoint = "", token = ''}) async {
+  //   // print(_localUrl + entryPoint);
 
-    //
-    try {
-      var url = Uri.https(_localUrl, '/api/' + entryPoint);
-      print('Response body: ${url.toString()}');
-      http.Response response = await http.post(
-        url,
-        body: jsonEncode(data),
-        headers: _setHeader(token: token),
-      );
-      print('Response body: ${response.body}');
-      //
+  //   //
+  //   try {
+  //     var url = Uri.https(_localUrl, '/api/' + entryPoint);
+  //     print('Response body: ${url.toString()}');
+  //     http.Response response = await http.post(
+  //       url,
+  //       body: jsonEncode(data),
+  //       headers: _setHeader(token: token),
+  //     );
+  //     print('Response body: ${response.body}');
+  //     //
 
-      print("state-> " + response.statusCode.toString());
-      if (response.statusCode == 200) {
-        return response;
-      }
-      return false;
-    } catch (e) {
-      print(e);
-      // print('connection filed');
-      return false;
-    }
-  }
+  //     print("state-> " + response.statusCode.toString());
+  //     if (response.statusCode == 200) {
+  //       return response;
+  //     }
+  //     return false;
+  //   } catch (e) {
+  //     print(e);
+  //     // print('connection filed');
+  //     return false;
+  //   }
+  // }
 
-  _setHeader({token = ''}) {
-    return {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + token,
-    };
-  }
+  // _setHeader({token = ''}) {
+  //   return {
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json',
+  //     'Authorization': 'Bearer ' + token,
+  //   };
+  // }
 }

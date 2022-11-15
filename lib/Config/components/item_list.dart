@@ -6,14 +6,20 @@ import '../../pages/detail_page.dart';
 import '../style.dart';
 
 class ItemList extends StatefulWidget {
-  var newData;
+  // var newData;
+  // var index;
+  var image;
+  var title;
+  var price;
   var index;
   BuildContext context;
   ItemList({
     super.key,
-    required this.newData,
-    required this.index,
     required this.context,
+    required this.index,
+    required this.image,
+    required this.title,
+    required this.price,
   });
 
   @override
@@ -36,6 +42,7 @@ class _ItemListState extends State<ItemList> {
       },
       child: Container(
         padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(7),
         width: MediaQuery.of(context).size.width * 0.7,
         height: 115,
         decoration: BoxDecoration(
@@ -50,8 +57,8 @@ class _ItemListState extends State<ItemList> {
               height: 100.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(widget.newData[widget.index]['img']),
-                  fit: BoxFit.cover,
+                  image: NetworkImage("https://fb.amjadfqs.me" + widget.image),
+                  fit: BoxFit.contain,
                 ),
                 borderRadius: BorderRadius.circular(
                   20.0,
@@ -64,7 +71,7 @@ class _ItemListState extends State<ItemList> {
               children: [
                 SizedBox(height: 10.0),
                 Text(
-                  widget.newData[widget.index]['name'],
+                  widget.title,
                   style: TextStyle(
                     color: mainTextColor,
                     fontSize: 16.0,
@@ -75,7 +82,7 @@ class _ItemListState extends State<ItemList> {
                 Row(
                   children: [
                     Text(
-                      widget.newData[widget.index]['speed'],
+                      widget.title,
                       style: TextStyle(
                         fontSize: 13.0,
                         color: secondTextColor,
@@ -85,7 +92,7 @@ class _ItemListState extends State<ItemList> {
                       width: 10.0,
                     ),
                     Text(
-                      "\$ " + widget.newData[widget.index]['price'],
+                      "\$ " + widget.price,
                       style: TextStyle(
                         fontSize: 13.0,
                         color: secondTextColor,

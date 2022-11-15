@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../Config/components/item_list.dart';
+import '../api/app_notifier.dart';
+import '../api/model/products.dart';
 
 class BrowsePage extends StatefulWidget {
-  const BrowsePage({
+  BrowsePage({
     Key? key,
   }) : super(key: key);
 
@@ -22,25 +26,41 @@ class _BrowsePageState extends State<BrowsePage> {
       child: Column(
         children: [
           Expanded(
-            child: FutureBuilder(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/json/car_list.json'),
-                builder: (context, snapshot) {
-                  // Decode the JSON
-                  var newData = json.decode(snapshot.data.toString());
-
-                  return ListView.separated(
-                    itemBuilder: (BuildContext context, int index) {
-                      return ItemList(
-                          context: context, index: index, newData: newData);
-                    },
-                    itemCount: newData == null ? 0 : newData.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(
-                      height: 15.0,
-                    ),
-                  );
-                }),
+            child: Consumer<AppNotifier>(
+              builder: (context, notifier, child) {
+                return FutureBuilder(
+                    future: notifier.getAllProducts('products?populate=*'),
+                    builder: (context, AsyncSnapshot<List<Products>> snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return ItemList(
+                              context: context,
+                              index: snapshot.data![index].id,
+                              image: snapshot.data![index].attributes!.images!
+                                  .data![0]?.attributes!.formats!.medium!.url
+                                  .toString(),
+                              title: snapshot.data![index].attributes!.brand!
+                                  .data!.attributes!.name
+                                  .toString(),
+                              price: snapshot.data![index].attributes!.price!
+                                  .toString(),
+                            );
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text("OOh"),
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    });
+              },
+            ),
           ),
         ],
       ),
