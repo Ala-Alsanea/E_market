@@ -2,6 +2,7 @@
 
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
+import 'package:e_maecket/pages/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class _CategoryPageState extends State<CategoryPage> {
         titleTextStyle: TextStyle(color: primaryColor),
       ),
       body: Container(
+        // ? fetch data
         child: Consumer<AppNotifier>(
           builder: (context, notifier, child) => FutureBuilder(
               // !: the url
@@ -75,6 +77,17 @@ class _CategoryPageState extends State<CategoryPage> {
                         img: snapshot.data![index].attributes!.images!.data![0]
                             ?.attributes!.url
                             .toString(),
+                        onTap: () {
+                          print(snapshot.data![index].id.toString());
+
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(),
+                                ));
+                          });
+                        },
                       );
                     },
                   );

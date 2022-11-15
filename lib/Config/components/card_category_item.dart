@@ -10,19 +10,21 @@ class CardCategoryItem extends StatelessWidget {
   var price;
   var name;
   var currency;
+  void Function()? onTap;
   CardCategoryItem({
     required this.index,
     required this.name,
     required this.price,
     required this.img,
     required this.currency,
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.all(10),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
