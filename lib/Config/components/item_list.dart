@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:flutter/material.dart';
 
 import '../../pages/detail_page.dart';
@@ -57,7 +58,7 @@ class _ItemListState extends State<ItemList> {
               height: 100.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage("https://fb.amjadfqs.me" + widget.image),
+                  image: NetworkImage(ConnectApi().Storge + widget.image),
                   fit: BoxFit.contain,
                 ),
                 borderRadius: BorderRadius.circular(
