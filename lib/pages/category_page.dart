@@ -32,13 +32,13 @@ class _CategoryPageState extends State<CategoryPage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: gradientColor1, //change your color here
+          color: primaryColor, //change your color here
         ),
         elevation: 0,
         backgroundColor: backgroundColor,
         centerTitle: true,
-        title: Text(widget.category, style: bold_24(color: gradientColor1)),
-        titleTextStyle: TextStyle(color: gradientColor1),
+        title: Text(widget.category, style: bold_24(color: primaryColor)),
+        titleTextStyle: TextStyle(color: primaryColor),
       ),
       body: Container(
         child: Consumer<AppNotifier>(

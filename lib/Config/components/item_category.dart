@@ -36,7 +36,8 @@ class ItemCategory extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           // color: gradientColor1,
-          gradient: LinearGradient(colors: [gradientColor1, gradientColor2]),
+          gradient: LinearGradient(
+              colors: [primaryColor, Color.fromARGB(255, 10, 176, 157)]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
