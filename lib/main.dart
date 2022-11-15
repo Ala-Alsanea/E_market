@@ -50,7 +50,12 @@ class _MyAppState extends State<MyApp> {
                   elevation: 0,
                   backgroundColor: primaryColor,
                 )
-              : null,
+              : AppBar(
+                  elevation: 0,
+                  backgroundColor: backgroundColor,
+                  title: Text('E Market', style: bold_24(color: primaryColor)),
+                  centerTitle: true,
+                ),
           extendBody: true,
           backgroundColor: backgroundColor,
           bottomNavigationBar: Container(
