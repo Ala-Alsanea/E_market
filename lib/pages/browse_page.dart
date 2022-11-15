@@ -39,7 +39,7 @@ class _BrowsePageState extends State<BrowsePage> {
                               context: context,
                               index: snapshot.data![index].id,
                               image: snapshot.data![index].attributes!.images!
-                                  .data![0]?.attributes!.formats!.medium!.url
+                                  .data![0]?.attributes!.url
                                   .toString(),
                               title: snapshot.data![index].attributes!.brand!
                                   .data!.attributes!.name
