@@ -3,8 +3,6 @@
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:getwidget/components/card/gf_card.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 
 import '../Config/components/car_category_card.dart';
 import '../Config/components/item_category.dart';
