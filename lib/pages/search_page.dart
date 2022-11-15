@@ -31,7 +31,6 @@ class _SearchPageState extends State<SearchPage> {
     return Column(
       children: [
         Container(),
-        text_input(context, 'Search here ...', icon: Icons.search),
         Expanded(
           child: GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 10),
