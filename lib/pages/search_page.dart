@@ -2,6 +2,7 @@
 
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/Config/style.dart';
+import 'package:e_maecket/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -42,6 +43,13 @@ class _SearchPageState extends State<SearchPage> {
               icon: widget.category[index]['icon'],
               onTap: () {
                 print(index);
+                setState(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryPage(),
+                      ));
+                });
               },
             ),
           ),

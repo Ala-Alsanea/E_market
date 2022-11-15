@@ -1,3 +1,4 @@
+import 'package:e_maecket/Config/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CarCategory extends StatelessWidget {
@@ -17,29 +18,19 @@ class CarCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 25.0,
-        right: 0.0,
-        bottom: 20.0,
-        top: 0.0,
-      ),
+      padding: const EdgeInsets.all(8),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.225,
-        width: MediaQuery.of(context).size.height * 0.20,
+        width: MediaQuery.of(context).size.width * 0.3,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(
-            25.0,
-          ),
+          borderRadius: BorderRadius.circular(25.0),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
               spreadRadius: 1.0,
               blurRadius: 8.0,
-              offset: const Offset(
-                0,
-                8,
-              ),
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -47,6 +38,7 @@ class CarCategory extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: getHeight(10)),
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
@@ -59,9 +51,14 @@ class CarCategory extends StatelessWidget {
                   ),
                   child: Container(),
                 ),
-                Image.asset(
-                  carPicture,
-                  width: 140.0,
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                  child: Image.asset(
+                    carPicture,
+                    width: 140.0,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),

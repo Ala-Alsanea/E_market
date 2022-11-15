@@ -10,11 +10,17 @@ class ItemCategory extends StatelessWidget {
   var onTap;
   var icon;
   var text;
+  var title;
+  var price;
+  var img;
 
   ItemCategory({
     this.onTap,
     this.icon,
     this.text,
+    this.title,
+    this.price,
+    this.img,
     Key? key,
   }) : super(key: key);
 
@@ -23,31 +29,33 @@ class ItemCategory extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        clipBehavior: Clip.antiAlias,
         margin: EdgeInsets.all(5),
-        height: getHeight(100),
+        height: getHeight(190),
         width: getWidth(100),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           // color: gradientColor1,
-          gradient: LinearGradient(
-            colors: [
-              gradientColor1,
-              gradientColor2,
-            ],
-          ),
+          gradient: LinearGradient(colors: [gradientColor1, gradientColor2]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, color: whiteColor, size: 40),
-            SizedBox(
-              height: getHeight(10),
-            ),
-            Text(
-              text,
-              style: bold_24(),
-            )
+            (img == null)
+                ? Icon(icon, color: whiteColor, size: 40)
+                : Image.asset(img, fit: BoxFit.cover, width: getWidth(140)),
+            SizedBox(height: getHeight(10)),
+            (title == null)
+                ? Text(text, style: bold_24())
+                : RichText(
+                    softWrap: true,
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(text: title, style: bold_24(), children: [
+                      TextSpan(text: '\n\$' + price, style: normal_18())
+                    ]),
+                  ),
           ],
         ),
       ),
