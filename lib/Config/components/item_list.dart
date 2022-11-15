@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,9 @@ class ItemList extends StatefulWidget {
   // var newData;
   // var index;
   var image;
-  var title;
+  var model;
   var price;
+  var brand;
   var index;
   BuildContext context;
   ItemList({
@@ -19,8 +21,9 @@ class ItemList extends StatefulWidget {
     required this.context,
     required this.index,
     required this.image,
-    required this.title,
+    required this.model,
     required this.price,
+    required this.brand,
   });
 
   @override
@@ -30,6 +33,7 @@ class ItemList extends StatefulWidget {
 class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
+    SizeOfConfig().init(context);
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -42,39 +46,37 @@ class _ItemListState extends State<ItemList> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.all(7),
-        width: MediaQuery.of(context).size.width * 0.7,
-        height: 115,
+        height: getHeight(90),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25.0),
         ),
         child: Row(
           children: [
-            // pic
             Container(
-              width: 100.0,
-              height: 100.0,
+              width: getWidth(90),
+              height: getHeight(90),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(ConnectApi().Storge + widget.image),
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(
                   20.0,
                 ),
               ),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+            SizedBox(width: getWidth(10)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10.0),
                 Text(
-                  widget.title,
+                  widget.model,
                   style: TextStyle(
-                    color: mainTextColor,
+                    color: darkTextColor.withOpacity(0.8),
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -83,10 +85,10 @@ class _ItemListState extends State<ItemList> {
                 Row(
                   children: [
                     Text(
-                      widget.title,
+                      widget.brand,
                       style: TextStyle(
                         fontSize: 13.0,
-                        color: secondTextColor,
+                        color: primaryColor.withOpacity(0.5),
                       ),
                     ),
                     const SizedBox(
@@ -96,7 +98,7 @@ class _ItemListState extends State<ItemList> {
                       "\$ " + widget.price,
                       style: TextStyle(
                         fontSize: 13.0,
-                        color: secondTextColor,
+                        color: primaryColor.withOpacity(0.5),
                       ),
                     ),
                     const SizedBox(

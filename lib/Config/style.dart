@@ -19,7 +19,7 @@ const Color redPurpleCircleColor = Color(0xFFB85284);
 const Color yellowCircleColor = Color(0xFFF2CB6C);
 //
 const Color lightTextColor = Color(0xFFedf4ed);
-const Color darkTextColor = Color(0xFF022b3a);
+const Color darkTextColor = Color(0xFF074358);
 const Color primaryColor = Color(0xFF2a9d8f);
 
 TextStyle normal_24({color = whiteColor}) {
@@ -56,8 +56,20 @@ TextStyle normal_16({color = whiteColor}) => TextStyle(
       color: color,
     );
 
+TextStyle normal_12({color = whiteColor}) => TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.normal,
+      color: color,
+    );
+
 TextStyle bold_16({color = whiteColor}) => TextStyle(
       fontSize: 16,
+      fontWeight: FontWeight.bold,
+      color: color,
+    );
+
+TextStyle bold_12({color = whiteColor}) => TextStyle(
+      fontSize: 12,
       fontWeight: FontWeight.bold,
       color: color,
     );
