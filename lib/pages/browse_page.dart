@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:e_maecket/Config/components/header_with_searchbox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,12 @@ class BrowsePage extends StatefulWidget {
 class _BrowsePageState extends State<BrowsePage> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Column(
         children: [
+          HeaderWithSearchBox(size: size),
           Expanded(
             child: Consumer<AppNotifier>(
               builder: (context, notifier, child) {

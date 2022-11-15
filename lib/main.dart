@@ -48,18 +48,17 @@ class _MyAppState extends State<MyApp> {
           appBar: (isThePage)
               ? AppBar(
                   elevation: 0,
-                  backgroundColor: backgroundColor,
-                  centerTitle: true,
-                  title:
-                      Text('E Market', style: bold_24(color: gradientColor1)),
-                  titleTextStyle: TextStyle(color: gradientColor1),
+                  backgroundColor: primaryColor,
                 )
               : null,
           extendBody: true,
           backgroundColor: backgroundColor,
           bottomNavigationBar: Container(
-            margin: EdgeInsets.symmetric(horizontal: 9),
-            padding: EdgeInsets.all(18.0),
+            margin: EdgeInsets.symmetric(
+              horizontal: 9,
+              vertical: 5,
+            ),
+            padding: EdgeInsets.all(7.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50.0),
               boxShadow: [
@@ -78,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                 gap: 13.0,
                 backgroundColor: Colors.white,
                 tabBorderRadius: 40.0,
-                tabBackgroundColor: gradientColor1,
+                tabBackgroundColor: primaryColor,
                 activeColor: whiteColor,
                 color: Colors.black.withOpacity(0.55),
                 selectedIndex: _selectedIndex,
@@ -95,10 +94,10 @@ class _MyAppState extends State<MyApp> {
                     icon: FontAwesomeIcons.house,
                     text: "Browse",
                     padding: EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
-                      top: 15.0,
-                      bottom: 15.0,
+                      left: 10.0,
+                      right: 10.0,
+                      top: 10.0,
+                      bottom: 10.0,
                     ),
                   ),
                   GButton(
