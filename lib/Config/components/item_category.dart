@@ -26,6 +26,7 @@ class ItemCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeOfConfig().init(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
