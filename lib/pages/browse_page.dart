@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:e_maecket/Config/components/header_with_searchbox.dart';
 import 'package:e_maecket/Config/components/title_with_more_btn.dart';
 import 'package:e_maecket/Config/size_config.dart';
+import 'package:e_maecket/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +44,18 @@ class _BrowsePageState extends State<BrowsePage> {
                           child: Column(
                             children: [
                               TitleWithMoreBtn(
-                                  title: "New Arrival", press: () {}),
+                                  title: "New Arrival",
+                                  press: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CategoryPage(
+                                            title: "New Arrival",
+                                            apiEntry:
+                                                'products?populate=*&sort=createdAt:DESC',
+                                          ),
+                                        ));
+                                  }),
                               SizedBox(
                                 height: SizeOfConfig.heightScreen * 0.3,
                                 child: ListView.separated(
@@ -80,7 +92,17 @@ class _BrowsePageState extends State<BrowsePage> {
                                           price: snapshot
                                               .data![index].attributes!.price
                                               .toString(),
-                                          press: () {},
+                                          press: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailPage(
+                                                    id: snapshot.data![index].id
+                                                        .toString(),
+                                                  ),
+                                                ));
+                                          },
                                         ),
                                       ],
                                     );
