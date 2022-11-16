@@ -339,6 +339,7 @@ class _DetailPageState extends State<DetailPage> {
                                           child: RichText(
                                             text: TextSpan(
                                                 text: checkNullText(snapshot
+
                                                     .data![0]
                                                     .attributes!
                                                     .stock!
@@ -348,6 +349,7 @@ class _DetailPageState extends State<DetailPage> {
                                                     .toString()),
                                                 style: normal_16(
                                                     color: mainTextColor)),
+
                                           ),
                                         ),
                                       )

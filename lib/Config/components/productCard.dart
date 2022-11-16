@@ -51,31 +51,34 @@ class ProductCardHome extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                padding: const EdgeInsets.all(20 / 2),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: const Offset(0, 10),
-                          blurRadius: 50,
-                          color: primaryColor.withOpacity(0.23))
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        model,
-                        style: const TextStyle(
-                          color: primaryColor,
+
+              Expanded(
+                flex: 3,
+                child: Container(
+                  padding: const EdgeInsets.all(20 / 2),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(0, 10),
+                            blurRadius: 50,
+                            color: primaryColor.withOpacity(0.23))
+                      ]),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          model,
+                          style: const TextStyle(
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.start,
+
                         ),
                         textAlign: TextAlign.start,
                       ),
