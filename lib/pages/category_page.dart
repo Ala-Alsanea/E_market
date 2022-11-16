@@ -87,13 +87,23 @@ class _CategoryPageState extends State<CategoryPage> {
                             child: TextField(
                               controller: search,
                               onEditingComplete: () {
-                                Endpoint =
-                                    'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
-                                        widget.title +
-                                        '&filters[\$or][0][model][\$containsi]=' +
-                                        search.text +
-                                        '&filters[\$or][1][brand][name][\$containsi]=' +
-                                        search.text;
+                                widget.title == "Search"
+                                    ? Endpoint =
+                                        'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
+                                            widget.title +
+                                            '&filters[\$or][0][model][\$containsi]=' +
+                                            search.text +
+                                            '&filters[\$or][1][brand][name][\$containsi]=' +
+                                            search.text
+                                    : Endpoint =
+                                        'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                            search.text +
+                                            '&filters[\$or][1][model][\$containsi]=' +
+                                            search.text +
+                                            '&filters[\$or][2][brand][name][\$containsi]=' +
+                                            search.text +
+                                            '&filters[\$or][3][price][\$eq]=' +
+                                            search.text;
                                 setState(() {
                                   getProduct =
                                       notifier.getAllProducts(Endpoint);

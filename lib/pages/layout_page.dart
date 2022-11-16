@@ -84,6 +84,8 @@ class _LayoutPageState extends State<LayoutPage> {
                 //     BrowsePage().toString());
                 checkThePage(index);
                 setState(() {
+                  isThePage = _listPages.elementAt(index).toString() !=
+                      SearchPage().toString();
                   _selectedIndex = index;
                 });
               },
