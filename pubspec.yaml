@@ -38,6 +38,7 @@ dependencies:
   http:
   provider:
   flutter_svg: ^1.1.6
+  animated_splash_screen: ^1.3.0
 
 
 dev_dependencies:

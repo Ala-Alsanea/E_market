@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:e_maecket/Config/components/splashScreen.dart';
 import 'package:e_maecket/pages/layout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LayoutPage(),
+        home: SpalshScreen(),
       ),
     );
   }
