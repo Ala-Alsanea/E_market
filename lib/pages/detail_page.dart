@@ -95,7 +95,7 @@ class _DetailPageState extends State<DetailPage> {
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             color: whiteColor, width: 2),
-                                        color: primaryColor,
+                                        color: primaryColor.withOpacity(.5),
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                     child: Icon(
@@ -141,7 +141,6 @@ class _DetailPageState extends State<DetailPage> {
                                     height: MediaQuery.of(context).size.height *
                                         0.025),
                                 // ? model and brand text
-
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 25.0,
@@ -149,14 +148,19 @@ class _DetailPageState extends State<DetailPage> {
                                   child: Column(
                                     children: [
                                       // ? model text
-                                      RichText(
-                                        text: TextSpan(
-                                            text: checkNullText(snapshot
-                                                .data![0]?.attributes?.model
-                                                .toString()),
-                                            style:
-                                                bold_24(color: mainTextColor)),
-                                      ),
+                                      snapshot.data![0].attributes!.model !=
+                                              null
+                                          ? RichText(
+                                              text: TextSpan(
+                                                  text: checkNullText(snapshot
+                                                      .data![0]
+                                                      .attributes!
+                                                      .model
+                                                      .toString()),
+                                                  style: bold_24(
+                                                      color: mainTextColor)),
+                                            )
+                                          : Container(),
                                       SizedBox(height: getHeight(10)),
                                       // ? brand text
                                       RichText(
@@ -177,149 +181,177 @@ class _DetailPageState extends State<DetailPage> {
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 25.0,
                                   ),
-                                  child: Row(
-                                    children: [
-                                      //? cpu type
-                                      Container(
-                                        height: 40.0,
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: primaryColor,
-                                        ),
-                                        child: Center(
-                                          child: RichText(
-                                            text: TextSpan(
-                                                text: checkNullText(snapshot
-                                                    .data![0]
-                                                    ?.attributes
-                                                    ?.cpuType
-                                                    ?.data
-                                                    ?.attributes
-                                                    ?.name
-                                                    .toString()),
-                                                style: normal_16()),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Expanded(child: Container()),
-                                      //? hard size and type
-
-                                      Container(
-                                        height: 40.0,
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: primaryColor,
-                                        ),
-                                        child: Center(
-                                          child: RichText(
-                                            text: TextSpan(
-                                                text: checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.prHardSize
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " " +
-                                                    checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.prHardType
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()),
-                                                style: normal_16()),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Expanded(child: Container()),
-                                      //? ram size
-
-                                      Container(
-                                        height: 40.0,
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: primaryColor,
-                                        ),
-                                        child: Center(
-                                          child: RichText(
-                                            text: TextSpan(
-                                                text: checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.ramSize
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " Ram",
-                                                style: normal_16()),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        //? cpu type
+                                        snapshot.data![0].attributes!.cpuType!
+                                                    .data !=
+                                                null
+                                            ? Container(
+                                                height: 40.0,
+                                                width: 100.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                  color: primaryColor,
+                                                ),
+                                                child: Center(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                        text: checkNullText(
+                                                            snapshot
+                                                                .data![0]
+                                                                .attributes!
+                                                                .cpuType!
+                                                                .data!
+                                                                .attributes!
+                                                                .name
+                                                                .toString()),
+                                                        style: normal_16()),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                        const SizedBox(width: 10.0),
+                                        //? hard size and type
+                                        snapshot.data![0].attributes!
+                                                        .prHardSize!.data !=
+                                                    null &&
+                                                snapshot.data![0].attributes!
+                                                        .prHardType !=
+                                                    null
+                                            ? Container(
+                                                height: 40.0,
+                                                width: 100.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                  color: primaryColor,
+                                                ),
+                                                child: Center(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                        text: checkNullText(
+                                                                snapshot
+                                                                    .data![0]
+                                                                    .attributes!
+                                                                    .prHardSize!
+                                                                    .data!
+                                                                    .attributes!
+                                                                    .name
+                                                                    .toString()) +
+                                                            " " +
+                                                            checkNullText(
+                                                                snapshot
+                                                                    .data![0]
+                                                                    .attributes!
+                                                                    .prHardType!
+                                                                    .data!
+                                                                    .attributes!
+                                                                    .name
+                                                                    .toString()),
+                                                        style: normal_16()),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                        const SizedBox(width: 10.0),
+                                        //? ram size
+                                        snapshot.data![0].attributes!.ramSize!
+                                                    .data !=
+                                                null
+                                            ? Container(
+                                                height: 40.0,
+                                                width: 100.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                  color: primaryColor,
+                                                ),
+                                                child: Center(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                        text: checkNullText(
+                                                                snapshot
+                                                                    .data![0]
+                                                                    .attributes!
+                                                                    .ramSize!
+                                                                    .data!
+                                                                    .attributes!
+                                                                    .name
+                                                                    .toString()) +
+                                                            " Ram",
+                                                        style: normal_16()),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.025),
                                 // ? store
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0,
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Store : " +
-                                              checkNullText(snapshot
-                                                  .data![0]
-                                                  ?.attributes
-                                                  ?.store
-                                                  ?.data
-                                                  ?.attributes
-                                                  ?.name
-                                                  .toString()),
-                                          style: bold_18(color: mainTextColor)),
-                                    ),
-                                  ),
-                                ),
-
+                                snapshot.data![0].attributes!.store!.data !=
+                                        null
+                                    ? Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 25.0,
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: RichText(
+                                            text: TextSpan(
+                                                text: "Store : " +
+                                                    checkNullText(snapshot
+                                                        .data![0]
+                                                        .attributes!
+                                                        .store!
+                                                        .data!
+                                                        .attributes!
+                                                        .name
+                                                        .toString()),
+                                                style: bold_18(
+                                                    color: mainTextColor)),
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.025),
                                 //? stock
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25.0),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: checkNullText(snapshot
-                                              .data![0]
-                                              ?.attributes
-                                              ?.stock
-                                              ?.data
-                                              ?.attributes
-                                              ?.name
-                                              .toString()),
-                                          style:
-                                              normal_16(color: mainTextColor)),
-                                    ),
-                                  ),
-                                ),
+                                snapshot.data![0].attributes!.stock!.data !=
+                                        null
+                                    ? Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25.0),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: RichText(
+                                            text: TextSpan(
+                                                text: checkNullText(snapshot
+                                                    .data![0]
+                                                    .attributes!
+                                                    .stock!
+                                                    .data!
+                                                    .attributes!
+                                                    .name
+                                                    .toString()),
+                                                style: normal_16(
+                                                    color: mainTextColor)),
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.025),
