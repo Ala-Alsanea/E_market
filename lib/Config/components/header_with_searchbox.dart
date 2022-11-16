@@ -68,7 +68,12 @@ class HeaderWithSearchBox extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        onChanged: (value) {},
+                        onEditingComplete: () {
+                          print('search');
+                        },
+                        onChanged: (value) {
+                          print(value);
+                        },
                         decoration: InputDecoration(
                             hintText: "Search",
                             hintStyle: TextStyle(
