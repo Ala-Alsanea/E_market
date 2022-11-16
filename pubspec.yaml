@@ -39,7 +39,9 @@ dependencies:
   provider:
   flutter_svg: ^1.1.6
   animated_splash_screen: ^1.3.0
-
+  hive_flutter:
+  introduction_screen:
+  lottie: ^1.4.1
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +54,7 @@ flutter:
     - assets/img/png/
     - assets/img/jpg/
     - assets/img/svg/
+    - assets/img/lottie/
     - assets/json/car_list.json
 
   uses-material-design: true

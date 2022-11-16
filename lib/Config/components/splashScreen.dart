@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:e_maecket/Config/components/intro_page.dart';
 import 'package:e_maecket/Config/style.dart';
 import 'package:e_maecket/main.dart';
 import 'package:e_maecket/pages/browse_page.dart';
@@ -15,7 +16,7 @@ class SpalshScreen extends StatelessWidget {
       splash: Center(
         child: Image.asset('assets/img/png/logo.png'),
       ),
-      nextScreen: LayoutPage(),
+      nextScreen: IntroPage(),
       splashIconSize: 300,
       duration: 1500,
       splashTransition: SplashTransition.fadeTransition,
