@@ -39,9 +39,7 @@ class HeaderWithSearchBox extends StatelessWidget {
               children: [
                 Text(
                   'E Market',
-                  style: bold_24(
-                    color: lightTextColor,
-                  ),
+                  style: headText,
                 ),
                 const Spacer(),
                 Image.asset("assets/img/png/logoRounded2.png")
