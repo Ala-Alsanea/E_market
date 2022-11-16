@@ -35,6 +35,7 @@ TextStyle bold_24({color = whiteColor}) {
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: color,
+    fontFamily: 'Montserrat',
   );
 }
 
