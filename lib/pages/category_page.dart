@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../Config/components/car_category_card.dart';
 import '../Config/components/card_category_item.dart';
 import '../Config/components/item_category.dart';
+import '../Config/components/productCard.dart';
 import '../Config/style.dart';
 import '../api/app_notifier.dart';
 import '../api/model/products.dart';
@@ -29,6 +30,13 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AppNotifier().getAllProducts(widget.apiEntry);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,19 +73,18 @@ class _CategoryPageState extends State<CategoryPage> {
                           ?.attributes!.url
                           .toString());
                       //
-                      return CardCategoryItem(
-                        index: snapshot.data![index].id.toString(),
-                        currency: snapshot
-                            .data![index].attributes!.currency!.data
+                      return ProductCardHome(
+                        brand: snapshot.data![index].attributes!.brand!.data!
+                            .attributes!.name
                             .toString(),
-                        name:
+                        model:
                             snapshot.data![index].attributes!.model.toString(),
                         price:
                             snapshot.data![index].attributes!.price.toString(),
-                        img: snapshot.data![index].attributes!.images!.data![0]
-                            ?.attributes!.url
+                        image: snapshot.data![index].attributes!.images!
+                            .data![0]?.attributes!.url
                             .toString(),
-                        onTap: () {
+                        press: () {
                           setState(() {
                             Navigator.push(
                                 context,

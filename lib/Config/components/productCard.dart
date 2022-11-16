@@ -54,7 +54,7 @@ class ProductCardHome extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Container(
                   padding: const EdgeInsets.all(20 / 2),
                   decoration: BoxDecoration(
