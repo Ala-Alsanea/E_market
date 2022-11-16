@@ -256,7 +256,7 @@ class _DetailPageState extends State<DetailPage> {
                                             text: TextSpan(
                                                 text: checkNullText(snapshot
                                                         .data![0]
-                                                        ?.attributes
+                                                        .attributes
                                                         ?.ramSize
                                                         ?.data
                                                         ?.attributes
