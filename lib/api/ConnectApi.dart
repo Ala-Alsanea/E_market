@@ -16,6 +16,7 @@ class ConnectApi {
       if (response.statusCode == 200) {
         return response.body;
       }
+      print(response.statusCode);
       return false;
     } catch (e) {
       print(e);

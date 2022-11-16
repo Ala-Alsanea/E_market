@@ -15,6 +15,7 @@ class ItemList extends StatefulWidget {
   var price;
   var brand;
   var index;
+  var onTap;
   BuildContext context;
   ItemList({
     super.key,
@@ -24,6 +25,7 @@ class ItemList extends StatefulWidget {
     required this.model,
     required this.price,
     required this.brand,
+    this.onTap,
   });
 
   @override
@@ -35,16 +37,7 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     SizeOfConfig().init(context);
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => DetailPage(),
-            ),
-          );
-        });
-      },
+      onTap: widget.onTap,
       child: Container(
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.all(7),

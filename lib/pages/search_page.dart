@@ -47,7 +47,10 @@ class _SearchPageState extends State<SearchPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => CategoryPage(
-                            category: widget.category[index]['text']),
+                            title: widget.category[index]['text'],
+                            apiEntry:
+                                'products?populate=*&filters[type][name][\$containsi]=' +
+                                    widget.category[index]['text'].toString()),
                       ));
                 });
               },
