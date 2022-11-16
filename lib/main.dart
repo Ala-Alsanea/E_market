@@ -7,6 +7,7 @@ import 'package:e_maecket/pages/layout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'Config/style.dart';
 import 'api/app_notifier.dart';
@@ -14,7 +15,11 @@ import 'pages/browse_page.dart';
 import 'pages/compare_page.dart';
 import 'pages/search_page.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  // open a box
+  var box = await Hive.openBox('mybox');
   runApp(const MyApp());
 }
 
