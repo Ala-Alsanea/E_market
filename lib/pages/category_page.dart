@@ -16,7 +16,7 @@ import '../api/app_notifier.dart';
 import '../api/model/products.dart';
 
 class CategoryPage extends StatefulWidget {
-  var title;
+  String title;
   var apiEntry;
 
   CategoryPage({

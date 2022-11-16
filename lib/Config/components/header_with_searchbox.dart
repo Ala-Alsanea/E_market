@@ -1,4 +1,5 @@
 import 'package:e_maecket/Config/style.dart';
+import 'package:e_maecket/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,6 +13,7 @@ class HeaderWithSearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var search = TextEditingController();
     return Container(
       margin: const EdgeInsets.only(bottom: 20 * 2.5),
       // It will cover 20% of our total height
@@ -68,7 +70,24 @@ class HeaderWithSearchBox extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        onChanged: (value) {},
+                        controller: search,
+                        onEditingComplete: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoryPage(
+                                  title: "Search",
+                                  apiEntry: 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                      search.text +
+                                      '&filters[\$or][1][model][\$containsi]=' +
+                                      search.text +
+                                      '&filters[\$or][2][brand][name][\$containsi]=' +
+                                      search.text +
+                                      '&filters[\$or][3][price][\$eq]=' +
+                                      search.text),
+                            ),
+                          );
+                        },
                         decoration: InputDecoration(
                             hintText: "Search",
                             hintStyle: TextStyle(

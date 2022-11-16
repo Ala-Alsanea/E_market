@@ -25,7 +25,7 @@ class ItemList extends StatefulWidget {
     required this.model,
     required this.price,
     required this.brand,
-    this.onTap,
+    required this.onTap,
   });
 
   @override
