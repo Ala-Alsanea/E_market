@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:e_maecket/Config/components/header_with_searchbox.dart';
 import 'package:e_maecket/Config/components/title_with_more_btn.dart';
 import 'package:e_maecket/Config/size_config.dart';
+import 'package:e_maecket/Config/style.dart';
 import 'package:e_maecket/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -156,7 +157,11 @@ class _BrowsePageState extends State<BrowsePage> {
                         );
                       } else if (snapshot.hasError) {
                         return Center(
-                          child: Text("OOh"),
+                          child: Text(
+                            "Check your internet connection... ",
+                            style:
+                                bold_18(color: primaryColor.withOpacity(0.7)),
+                          ),
                         );
                       } else {
                         return Center(

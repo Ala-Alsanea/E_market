@@ -131,6 +131,8 @@ class _DetailPageState extends State<DetailPage> {
 
                                 Container(
                                   child: SmoothPageIndicator(
+                                    effect: SlideEffect(
+                                        activeDotColor: primaryColor),
                                     controller: _controller,
                                     count: snapshot.data![0].attributes!.images!
                                         .data!.length,
