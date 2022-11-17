@@ -25,12 +25,18 @@ List _listPages = [
   SearchPage(),
   ComparePage(),
 ];
-
 checkThePage(int index) {
-  isThePage = _listPages.elementAt(index).toString() == SearchPage().toString();
+  isThePage = index != 1 ? true : false;
 }
 
 class _LayoutPageState extends State<LayoutPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bool isThePage = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -38,7 +44,7 @@ class _LayoutPageState extends State<LayoutPage> {
         ChangeNotifierProvider(create: (context) => AppNotifier()),
       ],
       child: Scaffold(
-        appBar: (!isThePage)
+        appBar: (isThePage)
             ? AppBar(
                 elevation: 0,
                 backgroundColor: primaryColor,
@@ -80,12 +86,10 @@ class _LayoutPageState extends State<LayoutPage> {
               color: Colors.black.withOpacity(0.55),
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
-                print(_listPages.elementAt(index).toString() !=
-                    SearchPage().toString());
-                checkThePage(index);
+                // print(_listPages.elementAt(index).toString() !=
+                //     SearchPage().toString());
                 setState(() {
-                  isThePage = _listPages.elementAt(index).toString() ==
-                      SearchPage().toString();
+                  checkThePage(index);
                   _selectedIndex = index;
                 });
               },
