@@ -87,7 +87,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             child: TextField(
                               controller: search,
                               onEditingComplete: () {
-                                widget.title == "Search"
+                                widget.title != "Search"
                                     ? Endpoint =
                                         'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
                                             widget.title +
