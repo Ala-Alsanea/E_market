@@ -4,6 +4,7 @@ import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../Config/size_config.dart';
 import '../Config/style.dart';
 import '../api/app_notifier.dart';
@@ -22,6 +23,8 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   //
+
+  PageController _controller = PageController();
 
   checkNullText(text) {
     if (text == null) return 'Non';
@@ -65,6 +68,7 @@ class _DetailPageState extends State<DetailPage> {
                                 height:
                                     MediaQuery.of(context).size.height * 0.35,
                                 child: PageView.builder(
+                                  controller: _controller,
                                   scrollDirection: Axis.horizontal,
                                   itemCount: snapshot.data![0].attributes!
                                       .images!.data!.length,
@@ -120,6 +124,18 @@ class _DetailPageState extends State<DetailPage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.03),
+                                // Indicator
+
+                                Container(
+                                  child: SmoothPageIndicator(
+                                    controller: _controller,
+                                    count: snapshot.data![0].attributes!.images!
+                                        .data!.length,
+                                  ),
+                                ),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.03),
@@ -339,7 +355,6 @@ class _DetailPageState extends State<DetailPage> {
                                           child: RichText(
                                             text: TextSpan(
                                                 text: checkNullText(snapshot
-
                                                     .data![0]
                                                     .attributes!
                                                     .stock!
@@ -349,7 +364,6 @@ class _DetailPageState extends State<DetailPage> {
                                                     .toString()),
                                                 style: normal_16(
                                                     color: mainTextColor)),
-
                                           ),
                                         ),
                                       )
