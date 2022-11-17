@@ -27,7 +27,7 @@ List _listPages = [
 ];
 
 checkThePage(int index) {
-  isThePage = _listPages.elementAt(index).toString() != SearchPage().toString();
+  isThePage = _listPages.elementAt(index).toString() == SearchPage().toString();
 }
 
 class _LayoutPageState extends State<LayoutPage> {
@@ -38,7 +38,7 @@ class _LayoutPageState extends State<LayoutPage> {
         ChangeNotifierProvider(create: (context) => AppNotifier()),
       ],
       child: Scaffold(
-        appBar: (isThePage)
+        appBar: (!isThePage)
             ? AppBar(
                 elevation: 0,
                 backgroundColor: primaryColor,
@@ -80,11 +80,11 @@ class _LayoutPageState extends State<LayoutPage> {
               color: Colors.black.withOpacity(0.55),
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
-                // print(_listPages.elementAt(index).toString() ==
-                //     BrowsePage().toString());
+                print(_listPages.elementAt(index).toString() !=
+                    SearchPage().toString());
                 checkThePage(index);
                 setState(() {
-                  isThePage = _listPages.elementAt(index).toString() !=
+                  isThePage = _listPages.elementAt(index).toString() ==
                       SearchPage().toString();
                   _selectedIndex = index;
                 });

@@ -42,7 +42,10 @@ dependencies:
   hive_flutter:
   introduction_screen:
   lottie: ^1.4.1
+
   google_fonts: ^3.0.1
+
+  smooth_page_indicator:
 
 dev_dependencies:
   flutter_test:

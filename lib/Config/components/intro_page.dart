@@ -12,7 +12,7 @@ import '../style.dart';
 class IntroPage extends StatelessWidget {
   IntroPage({Key? key}) : super(key: key);
 // var
-  // final _myBox = Hive.box('mybox');
+  // final _myBox = Hive.box('mybox');c
 
   final List<PageViewModel> pages = [
     PageViewModel(
