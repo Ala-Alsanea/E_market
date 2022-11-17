@@ -39,67 +39,66 @@ class HeaderWithSearchBox extends StatelessWidget {
               children: [
                 Text(
                   'E Market',
-                  style: bold_24(
-                    color: lightTextColor,
-                  ),
+                  style: headText,
                 ),
-                // const Spacer(),
-                // Image.asset("assets/images/logo.png")
+                const Spacer(),
+                Image.asset("assets/img/png/logoRounded2.png")
               ],
             ),
           ),
           Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                height: 54,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: const Offset(0, 10),
-                          blurRadius: 50,
-                          color: primaryColor.withOpacity(0.23))
-                    ]),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: search,
-                        onEditingComplete: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CategoryPage(
-                                  title: "Search",
-                                  apiEntry: 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
-                                      search.text +
-                                      '&filters[\$or][1][model][\$containsi]=' +
-                                      search.text +
-                                      '&filters[\$or][2][brand][name][\$containsi]=' +
-                                      search.text +
-                                      '&filters[\$or][3][price][\$eq]=' +
-                                      search.text),
-                            ),
-                          );
-                        },
-                        decoration: InputDecoration(
-                            hintText: "Search",
-                            hintStyle: TextStyle(
-                                color: primaryColor.withOpacity(0.23)),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none),
-                      ),
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              height: 54,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        offset: const Offset(0, 10),
+                        blurRadius: 50,
+                        color: primaryColor.withOpacity(0.23))
+                  ]),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: search,
+                      onEditingComplete: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CategoryPage(
+                                title: "Search",
+                                apiEntry: 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                    search.text +
+                                    '&filters[\$or][1][model][\$containsi]=' +
+                                    search.text +
+                                    '&filters[\$or][2][brand][name][\$containsi]=' +
+                                    search.text +
+                                    '&filters[\$or][3][price][\$eq]=' +
+                                    search.text),
+                          ),
+                        );
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Search",
+                          hintStyle:
+                              TextStyle(color: primaryColor.withOpacity(0.23)),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none),
                     ),
-                    SvgPicture.asset("assets/img/svg/search.svg")
-                  ],
-                ),
-              ))
+                  ),
+                  SvgPicture.asset("assets/img/svg/search.svg")
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

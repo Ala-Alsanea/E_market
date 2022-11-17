@@ -42,7 +42,7 @@ class ProductCardHome extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 3,
+                flex: 6,
                 child: Container(
                   padding: const EdgeInsets.only(
                     top: 10,
@@ -58,7 +58,9 @@ class ProductCardHome extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Container(
-                  padding: const EdgeInsets.all(20 / 2),
+                  padding: EdgeInsets.all(
+                    getWidth(5),
+                  ),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: const BorderRadius.only(
@@ -74,7 +76,8 @@ class ProductCardHome extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
+                      SizedBox(
+                        height: 15,
                         child: Text(
                           model,
                           style: const TextStyle(
@@ -83,21 +86,22 @@ class ProductCardHome extends StatelessWidget {
                           textAlign: TextAlign.start,
                         ),
                       ),
-                      Spacer(),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            brand,
-                            style:
-                                TextStyle(color: primaryColor.withOpacity(0.5)),
-                          ),
-                          const Spacer(),
-                          Text(
-                            "\$$price",
-                            style: bold_12(color: darkTextColor),
-                          )
-                        ],
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              brand,
+                              style: TextStyle(
+                                  color: primaryColor.withOpacity(0.5)),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "\$$price",
+                              style: bold_12(color: darkTextColor),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),

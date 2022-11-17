@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const Color backgroundColor = Color(0xFFeaeef7);
 const Color gradientColor1 = Color(0xFF323fa3);
@@ -35,8 +36,15 @@ TextStyle bold_24({color = whiteColor}) {
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: color,
+    fontFamily: 'Montserrat',
   );
 }
+
+TextStyle headText = GoogleFonts.jaldi(
+  fontSize: 28,
+  fontWeight: FontWeight.bold,
+  color: lightTextColor,
+);
 
 TextStyle normal_18({color = whiteColor}) => TextStyle(
       fontSize: 18,

@@ -42,17 +42,23 @@ dependencies:
   hive_flutter:
   introduction_screen:
   lottie: ^1.4.1
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.10.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/png/icon.png"
 
   flutter_lints: ^1.0.0
 
 flutter:
   assets:
     - assets/img/png/
-    - assets/img/jpg/
     - assets/img/svg/
     - assets/img/lottie/
     - assets/json/car_list.json
