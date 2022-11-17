@@ -12,7 +12,7 @@ import '../style.dart';
 class IntroPage extends StatelessWidget {
   IntroPage({Key? key}) : super(key: key);
 // var
-  // final _myBox = Hive.box('mybox');c
+  final _myBox = Hive.box('mybox');
 
   final List<PageViewModel> pages = [
     PageViewModel(
@@ -83,7 +83,7 @@ class IntroPage extends StatelessWidget {
   void OnDone(context) async {
     // final prefs = await SharedPreferences.getInstance();
     // await prefs.setBool('ON_BOARDING', false);
-    // _myBox.put('intro', true);
+    _myBox.put('intro', true);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LayoutPage()));
   }
