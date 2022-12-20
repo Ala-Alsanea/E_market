@@ -4,6 +4,7 @@
 ## ToDo
 - enhancement  
   - [ ] fix home page scrolling 
+  - [ ] add refresh indicator 
   - [ ] reorder detail page
   - [ ] test the app ( to discover unknown bugs ) 
      
