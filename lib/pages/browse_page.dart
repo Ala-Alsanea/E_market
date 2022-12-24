@@ -115,8 +115,9 @@ class _BrowsePageState extends State<BrowsePage> {
                               ),
                               TitleWithMoreBtn(title: "Popular", press: () {}),
                               SizedBox(
-                                height: SizeOfConfig.heightScreen * 0.3,
+                                height: SizeOfConfig.heightScreen * 1.2,
                                 child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (context, index) {
