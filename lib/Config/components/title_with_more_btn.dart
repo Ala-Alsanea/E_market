@@ -1,6 +1,8 @@
 import 'package:e_maecket/Config/style.dart';
 import 'package:flutter/material.dart';
 
+import 'btn_app.dart';
+
 class TitleWithMoreBtn extends StatelessWidget {
   const TitleWithMoreBtn({
     Key? key,
@@ -19,16 +21,7 @@ class TitleWithMoreBtn extends StatelessWidget {
         children: [
           TitleWithCustomUnderline(text: title),
           const Spacer(),
-          TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              onPressed: press,
-              child: const Text(
-                "More",
-                style: TextStyle(color: Colors.white),
-              )),
+          BtnApp(press: press),
         ],
       ),
     );
