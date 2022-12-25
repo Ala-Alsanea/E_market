@@ -5,8 +5,10 @@
 - enhancement  
   - [X] fix home page scrolling 
   - [X] reorder details page 
-  - [ ] add "Not found" message in search page 
-  - [ ] add refresh indicator 
+  - [X] add "Not found" message in search page 
+  - [X] add dynamic search 
+  - [X] get last 4 product in new Arrival 
+  - [X] add refresh indicator 
   - [ ] test the app ( to discover unknown bugs ) 
      
 - adding feature  

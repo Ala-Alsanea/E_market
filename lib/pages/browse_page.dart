@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:e_maecket/Config/components/btn_app.dart';
 import 'package:e_maecket/Config/components/header_with_searchbox.dart';
 import 'package:e_maecket/Config/components/title_with_more_btn.dart';
 import 'package:e_maecket/Config/size_config.dart';
@@ -41,59 +42,140 @@ class _BrowsePageState extends State<BrowsePage> {
                     future: notifier.getAllProducts('products?populate=*'),
                     builder: (context, AsyncSnapshot<List<Products>> snapshot) {
                       if (snapshot.hasData) {
-                        return SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              TitleWithMoreBtn(
-                                  title: "New Arrival",
-                                  press: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => CategoryPage(
-                                            title: "New Arrival",
-                                            apiEntry:
-                                                'products?populate=*&sort=createdAt:DESC',
+                        return RefreshIndicator(
+                          onRefresh: () {
+                            setState(() {
+                              notifier.getAllProducts('products?populate=*');
+                            });
+                            return notifier
+                                .getAllProducts('products?populate=*');
+                          },
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                //New Arrival
+                                TitleWithMoreBtn(
+                                    title: "New Arrival",
+                                    press: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CategoryPage(
+                                              title: "New Arrival",
+                                              apiEntry:
+                                                  'products?populate=*&sort=createdAt:DESC&pagination[pageSize]=7',
+                                            ),
+                                          ));
+                                    }),
+
+                                Consumer<AppNotifier>(
+                                  builder: (context, notifier_, child) {
+                                    return FutureBuilder(
+                                      initialData: snapshot.data,
+                                      future: notifier_.getAllProducts(
+                                          'products?populate=*&sort=createdAt:DESC&pagination[pageSize]=4'),
+                                      builder: (context,
+                                              AsyncSnapshot<List<Products>>
+                                                  snap_shot) =>
+                                          SizedBox(
+                                        height: SizeOfConfig.heightScreen * 0.3,
+                                        child: ListView.separated(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: snap_shot.data!.length,
+                                          separatorBuilder: (context, index) =>
+                                              SizedBox(
+                                            width: 5,
                                           ),
-                                        ));
-                                  }),
-                              SizedBox(
-                                height: SizeOfConfig.heightScreen * 0.3,
-                                child: ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: snapshot.data!.length,
-                                  separatorBuilder: (context, index) =>
-                                      SizedBox(
-                                    width: 5,
-                                  ),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Row(
-                                      children: [
-                                        ProductCardHome(
-                                          image: snapshot
-                                              .data![index]
-                                              .attributes!
-                                              .images!
-                                              .data![0]
-                                              ?.attributes!
-                                              .url
-                                              .toString(),
-                                          model: snapshot
-                                              .data![index].attributes!.model
-                                              .toString(),
-                                          brand: snapshot
-                                              .data![index]
-                                              .attributes!
-                                              .brand!
-                                              .data!
-                                              .attributes!
-                                              .name
-                                              .toString(),
-                                          price: snapshot
-                                              .data![index].attributes!.price
-                                              .toString(),
-                                          press: () {
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return Row(
+                                              children: [
+                                                ProductCardHome(
+                                                  image: snap_shot
+                                                      .data![index]
+                                                      .attributes!
+                                                      .images!
+                                                      .data![0]
+                                                      ?.attributes!
+                                                      .url
+                                                      .toString(),
+                                                  model: snap_shot.data![index]
+                                                      .attributes!.model
+                                                      .toString(),
+                                                  brand: snap_shot
+                                                      .data![index]
+                                                      .attributes!
+                                                      .brand!
+                                                      .data!
+                                                      .attributes!
+                                                      .name
+                                                      .toString(),
+                                                  price: snap_shot.data![index]
+                                                      .attributes!.price
+                                                      .toString(),
+                                                  press: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              DetailPage(
+                                                            id: snap_shot
+                                                                .data![index].id
+                                                                .toString(),
+                                                          ),
+                                                        ));
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+
+                                SizedBox(
+                                  height: getWidth(10),
+                                ),
+
+                                //Popular
+                                TitleWithMoreBtn(
+                                    title: "Popular",
+                                    press: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CategoryPage(
+                                              title: "Popular",
+                                              apiEntry: 'products?populate=*',
+                                            ),
+                                          ));
+                                    }),
+                                SizedBox(
+                                  height: SizeOfConfig.heightScreen * 1.2,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: snapshot.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return ItemList(
+                                        context: context,
+                                        index: snapshot.data![index].id,
+                                        image: snapshot.data![index].attributes!
+                                            .images!.data![0]?.attributes!.url
+                                            .toString(),
+                                        model: snapshot
+                                            .data![index].attributes!.model
+                                            .toString(),
+                                        brand: snapshot.data![index].attributes!
+                                            .brand!.data!.attributes!.name
+                                            .toString(),
+                                        price: snapshot
+                                            .data![index].attributes!.price!
+                                            .toString(),
+                                        onTap: () {
+                                          setState(() {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -103,65 +185,44 @@ class _BrowsePageState extends State<BrowsePage> {
                                                         .toString(),
                                                   ),
                                                 ));
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: getWidth(10),
-                              ),
-                              TitleWithMoreBtn(title: "Popular", press: () {}),
-                              SizedBox(
-                                height: SizeOfConfig.heightScreen * 1.2,
-                                child: ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return ItemList(
-                                      context: context,
-                                      index: snapshot.data![index].id,
-                                      image: snapshot.data![index].attributes!
-                                          .images!.data![0]?.attributes!.url
-                                          .toString(),
-                                      model: snapshot
-                                          .data![index].attributes!.model
-                                          .toString(),
-                                      brand: snapshot.data![index].attributes!
-                                          .brand!.data!.attributes!.name
-                                          .toString(),
-                                      price: snapshot
-                                          .data![index].attributes!.price!
-                                          .toString(),
-                                      onTap: () {
-                                        setState(() {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailPage(
-                                                  id: snapshot.data![index].id
-                                                      .toString(),
-                                                ),
-                                              ));
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                              )
-                            ],
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         );
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(
-                            "Check your internet connection... ",
-                            style:
-                                bold_18(color: primaryColor.withOpacity(0.7)),
+                        return RefreshIndicator(
+                          displacement: 250,
+                          onRefresh: () =>
+                              notifier.getAllProducts('products?populate=*'),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Check your internet connection... ",
+                                  style: bold_18(
+                                      color: primaryColor.withOpacity(0.7)),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                BtnApp(
+                                  press: () {
+                                    setState(() {
+                                      notifier.getAllProducts(
+                                          'products?populate=*');
+                                    });
+                                  },
+                                  title: "Refresh",
+                                )
+                              ],
+                            ),
                           ),
                         );
                       } else {

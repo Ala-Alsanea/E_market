@@ -86,7 +86,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             boxShadow: [
                               BoxShadow(
                                   offset: const Offset(0, 10),
-                                  blurRadius: 50,
+                                  blurRadius: 10,
                                   color: primaryColor.withOpacity(0.23))
                             ]),
                         child: Row(
