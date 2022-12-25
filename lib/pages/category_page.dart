@@ -65,157 +65,122 @@ class _CategoryPageState extends State<CategoryPage> {
               future: getProduct,
               builder: (context, AsyncSnapshot<List<Products>> snapshot) {
                 // !!!
-                return Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      height: 54,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: const Offset(0, 10),
-                                blurRadius: 50,
-                                color: primaryColor.withOpacity(0.23))
-                          ]),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: search,
-                              onEditingComplete: () {
-                                widget.title != "Search"
-                                    ? Endpoint =
-                                        'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
-                                            widget.title +
-                                            '&filters[\$or][0][model][\$containsi]=' +
-                                            search.text +
-                                            '&filters[\$or][1][brand][name][\$containsi]=' +
-                                            search.text
-                                    : Endpoint =
-                                        'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
-                                            search.text +
-                                            '&filters[\$or][1][model][\$containsi]=' +
-                                            search.text +
-                                            '&filters[\$or][2][brand][name][\$containsi]=' +
-                                            search.text +
-                                            '&filters[\$or][3][price][\$eq]=' +
-                                            search.text;
+
+                if (snapshot.hasData) {
+                  return Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: const Offset(0, 10),
+                                  blurRadius: 50,
+                                  color: primaryColor.withOpacity(0.23))
+                            ]),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: search,
+                                onEditingComplete: () {
+                                  widget.title != "Search"
+                                      ? Endpoint =
+                                          'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
+                                              widget.title +
+                                              '&filters[\$or][0][model][\$containsi]=' +
+                                              search.text +
+                                              '&filters[\$or][1][brand][name][\$containsi]=' +
+                                              search.text
+                                      : Endpoint = 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][1][model][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][2][brand][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][3][price][\$eq]=' +
+                                          search.text;
+                                  setState(() {
+                                    getProduct =
+                                        notifier.getAllProducts(Endpoint);
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Search",
+                                    hintStyle: TextStyle(
+                                        color: primaryColor.withOpacity(0.23)),
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none),
+                              ),
+                            ),
+                            SvgPicture.asset("assets/img/svg/search.svg")
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: getHeight(20),
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: getWidth(2),
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            // ? debug
+                            print(ConnectApi().Storge);
+                            print("from cat");
+                            print(snapshot.data![index].attributes!.images!
+                                .data![0]?.attributes!.url
+                                .toString());
+                            //
+                            return ProductCardHome(
+                              brand: snapshot.data![index].attributes!.brand!
+                                  .data!.attributes!.name
+                                  .toString(),
+                              model: snapshot.data![index].attributes!.model
+                                  .toString(),
+                              price: snapshot.data![index].attributes!.price
+                                  .toString(),
+                              image: snapshot.data![index].attributes!.images!
+                                  .data![0]?.attributes!.url
+                                  .toString(),
+                              press: () {
                                 setState(() {
-                                  getProduct =
-                                      notifier.getAllProducts(Endpoint);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailPage(
+                                          id: snapshot.data![index].id
+                                              .toString(),
+                                        ),
+                                      ));
                                 });
                               },
-                              decoration: InputDecoration(
-                                  hintText: "Search",
-                                  hintStyle: TextStyle(
-                                      color: primaryColor.withOpacity(0.23)),
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none),
-                            ),
-                          ),
-                          SvgPicture.asset("assets/img/svg/search.svg")
-                        ],
-                      ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text(
+                      "Check your internet connection... ",
+                      style: bold_18(color: primaryColor.withOpacity(0.7)),
                     ),
-                    SizedBox(
-                      height: getHeight(20),
-                    ),
-                    snapshot.hasData
-                        ? Expanded(
-                            child: GridView.builder(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: getWidth(2),
-                              ),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2),
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                // ? debug
-                                print(ConnectApi().Storge);
-                                print(snapshot.data![index].attributes!.images!
-                                    .data![0]?.attributes!.url
-                                    .toString());
-                                //
-                                return ProductCardHome(
-                                  brand: snapshot.data![index].attributes!
-                                      .brand!.data!.attributes!.name
-                                      .toString(),
-                                  model: snapshot.data![index].attributes!.model
-                                      .toString(),
-                                  price: snapshot.data![index].attributes!.price
-                                      .toString(),
-                                  image: snapshot.data![index].attributes!
-                                      .images!.data![0]?.attributes!.url
-                                      .toString(),
-                                  press: () {
-                                    setState(() {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => DetailPage(
-                                              id: snapshot.data![index].id
-                                                  .toString(),
-                                            ),
-                                          ));
-                                    });
-                                  },
-                                );
-                              },
-                            ),
-                          )
-                        : Center(child: CircularProgressIndicator()),
-                  ],
-                );
-                // if (snapshot.hasData) {
-                //   return GridView.builder(
-                //     padding: EdgeInsets.symmetric(horizontal: 10),
-                //     gridDelegate:
-                //         SliverGridDelegateWithFixedCrossAxisCount(
-                //             crossAxisCount: 2),
-                //     itemCount: snapshot.data!.length,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       // ? debug
-                //       print(ConnectApi().Storge);
-                //       print(snapshot.data![index].attributes!.images!
-                //           .data![0]?.attributes!.url
-                //           .toString());
-                //       //
-                //       return ProductCardHome(
-                //         brand: snapshot.data![index].attributes!.brand!
-                //             .data!.attributes!.name
-                //             .toString(),
-                //         model: snapshot.data![index].attributes!.model
-                //             .toString(),
-                //         price: snapshot.data![index].attributes!.price
-                //             .toString(),
-                //         image: snapshot.data![index].attributes!.images!
-                //             .data![0]?.attributes!.url
-                //             .toString(),
-                //         press: () {
-                //           setState(() {
-                //             Navigator.push(
-                //                 context,
-                //                 MaterialPageRoute(
-                //                   builder: (context) => DetailPage(
-                //                     id: snapshot.data![index].id
-                //                         .toString(),
-                //                   ),
-                //                 ));
-                //           });
-                //         },
-                //       );
-                //     },
-                //   );
-                // } else {
-                //   return Center(
-                //     child: CircularProgressIndicator(),
-                //   );
-                // }
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
               }),
         ),
       ),
