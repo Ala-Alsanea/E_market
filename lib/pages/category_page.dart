@@ -19,9 +19,11 @@ import '../api/model/products.dart';
 class CategoryPage extends StatefulWidget {
   String title;
   var apiEntry;
+  var what2Search;
 
   CategoryPage({
     required this.title,
+    this.what2Search = '',
     required this.apiEntry,
     super.key,
   });
@@ -37,8 +39,8 @@ class _CategoryPageState extends State<CategoryPage> {
   bool fetching = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    search.text = widget.what2Search;
     getProduct = AppNotifier().getAllProducts(widget.apiEntry);
   }
 
@@ -65,10 +67,14 @@ class _CategoryPageState extends State<CategoryPage> {
               future: getProduct,
               builder: (context, AsyncSnapshot<List<Products>> snapshot) {
                 // !!!
+                print(["from category page snapshot", snapshot.data?.length]);
+                print(
+                    ["from category page widget.apiEntry", widget.what2Search]);
 
                 if (snapshot.hasData) {
                   return Column(
                     children: [
+                      // search par
                       Container(
                         alignment: Alignment.center,
                         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -88,6 +94,29 @@ class _CategoryPageState extends State<CategoryPage> {
                             Expanded(
                               child: TextField(
                                 controller: search,
+                                onChanged: ((value) {
+                                  print(value);
+                                  widget.title != "Search"
+                                      ? Endpoint =
+                                          'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
+                                              widget.title +
+                                              '&filters[\$or][0][model][\$containsi]=' +
+                                              search.text +
+                                              '&filters[\$or][1][brand][name][\$containsi]=' +
+                                              search.text
+                                      : Endpoint = 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][1][model][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][2][brand][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][3][price][\$eq]=' +
+                                          search.text;
+                                  setState(() {
+                                    getProduct =
+                                        notifier.getAllProducts(Endpoint);
+                                  });
+                                }),
                                 onEditingComplete: () {
                                   widget.title != "Search"
                                       ? Endpoint =
@@ -125,50 +154,59 @@ class _CategoryPageState extends State<CategoryPage> {
                       SizedBox(
                         height: getHeight(20),
                       ),
-                      Expanded(
-                        child: GridView.builder(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: getWidth(2),
-                          ),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2),
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            // ? debug
-                            print(ConnectApi().Storge);
-                            print("from cat");
-                            print(snapshot.data![index].attributes!.images!
-                                .data![0]?.attributes!.url
-                                .toString());
-                            //
-                            return ProductCardHome(
-                              brand: snapshot.data![index].attributes!.brand!
-                                  .data!.attributes!.name
-                                  .toString(),
-                              model: snapshot.data![index].attributes!.model
-                                  .toString(),
-                              price: snapshot.data![index].attributes!.price
-                                  .toString(),
-                              image: snapshot.data![index].attributes!.images!
-                                  .data![0]?.attributes!.url
-                                  .toString(),
-                              press: () {
-                                setState(() {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DetailPage(
-                                          id: snapshot.data![index].id
-                                              .toString(),
-                                        ),
-                                      ));
-                                });
-                              },
-                            );
-                          },
-                        ),
-                      )
+                      // grid list
+                      snapshot.data?.length != 0
+                          ? Expanded(
+                              child: GridView.builder(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getWidth(2),
+                                ),
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2),
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  // ? debug
+                                  print('items found');
+                                  //
+                                  return ProductCardHome(
+                                    brand: snapshot.data![index].attributes!
+                                        .brand!.data!.attributes!.name
+                                        .toString(),
+                                    model: snapshot
+                                        .data![index].attributes!.model
+                                        .toString(),
+                                    price: snapshot
+                                        .data![index].attributes!.price
+                                        .toString(),
+                                    image: snapshot.data![index].attributes!
+                                        .images!.data![0]?.attributes!.url
+                                        .toString(),
+                                    press: () {
+                                      setState(() {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => DetailPage(
+                                                id: snapshot.data![index].id
+                                                    .toString(),
+                                              ),
+                                            ));
+                                      });
+                                    },
+                                  );
+                                },
+                              ),
+                            )
+                          : Expanded(
+                              child: Center(
+                                child: Text(
+                                  "not found ",
+                                  style: bold_18(
+                                      color: primaryColor.withOpacity(0.7)),
+                                ),
+                              ),
+                            ),
                     ],
                   );
                 } else if (snapshot.hasError) {
