@@ -3,7 +3,9 @@
 
 ## ToDo
 - enhancement  
-  - [ ] fix home page scrolling 
+  - [X] fix home page scrolling 
+  - [X] reorder details page 
+  - [ ] add "Not found" message in search page 
   - [ ] add refresh indicator 
   - [ ] test the app ( to discover unknown bugs ) 
      
