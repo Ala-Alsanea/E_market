@@ -377,71 +377,142 @@ class _DetailPageState extends State<DetailPage> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 25.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: RichText(
-                                      overflow: TextOverflow.clip,
-                                      text: TextSpan(
-                                          text: 'Details \n\n',
-                                          style: bold_24(color: mainTextColor),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Details",
+                                          style:
+                                              bold_24(color: tealCircleColor)),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                      Row(
+                                        children: [
+                                          RichText(
+                                            overflow: TextOverflow.clip,
+                                            text: TextSpan(
+                                              text: 'Status:',
+                                              style:
+                                                  bold_18(color: mainTextColor),
+                                              children: [
+                                                TextSpan(
+                                                    text: "   " +
+                                                        checkNullText(snapshot
+                                                            .data![0]
+                                                            .attributes
+                                                            ?.status
+                                                            ?.data
+                                                            ?.attributes
+                                                            ?.name
+                                                            .toString()) +
+                                                        " ",
+                                                    style: normal_16(
+                                                        color: mainTextColor))
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 5.0),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.060),
+                                            child: RichText(
+                                              overflow: TextOverflow.clip,
+                                              text: TextSpan(
+                                                text: 'screenSize:',
+                                                style: bold_18(
+                                                    color: mainTextColor),
+                                                children: [
+                                                  TextSpan(
+                                                      text: "   " +
+                                                          checkNullText(snapshot
+                                                              .data![0]
+                                                              .attributes
+                                                              ?.screenSize
+                                                              ?.data
+                                                              ?.attributes
+                                                              ?.name
+                                                              .toString()) +
+                                                          " ",
+                                                      style: normal_16(
+                                                          color: mainTextColor))
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          RichText(
+                                            overflow: TextOverflow.clip,
+                                            text: TextSpan(
+                                              text: 'OS:',
+                                              style:
+                                                  bold_18(color: mainTextColor),
+                                              children: [
+                                                TextSpan(
+                                                    text: "   " +
+                                                        checkNullText(snapshot
+                                                            .data![0]
+                                                            .attributes
+                                                            ?.operatingSystem
+                                                            ?.data
+                                                            ?.attributes
+                                                            ?.name
+                                                            .toString()) +
+                                                        " ",
+                                                    style: normal_16(
+                                                        color: mainTextColor))
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.060),
+                                            child: RichText(
+                                              overflow: TextOverflow.clip,
+                                              text: TextSpan(
+                                                text: 'ram speed:',
+                                                style: bold_18(
+                                                    color: mainTextColor),
+                                                children: [
+                                                  TextSpan(
+                                                      text: "   " +
+                                                          checkNullText(snapshot
+                                                              .data![0]
+                                                              .attributes
+                                                              ?.ramSpeed
+                                                              ?.data
+                                                              ?.attributes
+                                                              ?.name
+                                                              .toString()) +
+                                                          " ",
+                                                      style: normal_16(
+                                                          color: mainTextColor))
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      RichText(
+                                        overflow: TextOverflow.clip,
+                                        text: TextSpan(
+                                          text: 'ram type:',
+                                          style: bold_18(color: mainTextColor),
                                           children: [
                                             TextSpan(
-                                                text: "  status : " +
+                                                text: "   " +
                                                     checkNullText(snapshot
                                                         .data![0]
-                                                        ?.attributes
-                                                        ?.status
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " ",
-                                                style: normal_16(
-                                                    color: mainTextColor)),
-                                            TextSpan(
-                                                text: "screenSize : " +
-                                                    checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.screenSize
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " ",
-                                                style: normal_16(
-                                                    color: mainTextColor)),
-                                            TextSpan(
-                                                text: " OS : " +
-                                                    checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.operatingSystem
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " ",
-                                                style: normal_16(
-                                                    color: mainTextColor)),
-                                            TextSpan(
-                                                text: "  ram speed : " +
-                                                    checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
-                                                        ?.ramSpeed
-                                                        ?.data
-                                                        ?.attributes
-                                                        ?.name
-                                                        .toString()) +
-                                                    " ",
-                                                style: normal_16(
-                                                    color: mainTextColor)),
-                                            TextSpan(
-                                                text: " ram type : " +
-                                                    checkNullText(snapshot
-                                                        .data![0]
-                                                        ?.attributes
+                                                        .attributes
                                                         ?.ramType
                                                         ?.data
                                                         ?.attributes
@@ -449,9 +520,11 @@ class _DetailPageState extends State<DetailPage> {
                                                         .toString()) +
                                                     " ",
                                                 style: normal_16(
-                                                    color: mainTextColor)),
-                                          ]),
-                                    ),
+                                                    color: mainTextColor))
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(

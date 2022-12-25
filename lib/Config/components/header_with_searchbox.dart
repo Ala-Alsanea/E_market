@@ -75,6 +75,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => CategoryPage(
                                 title: "Search",
+                                what2Search: search.text,
                                 apiEntry: 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
                                     search.text +
                                     '&filters[\$or][1][model][\$containsi]=' +
