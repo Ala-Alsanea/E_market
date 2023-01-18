@@ -27,7 +27,7 @@ List _listPages = [
   StorePage(),
 ];
 checkThePage(int index) {
-  isThePage = index != 1 ? true : false;
+  isThePage = index == 0 ? true : false;
 }
 
 class _LayoutPageState extends State<LayoutPage> {
@@ -46,10 +46,7 @@ class _LayoutPageState extends State<LayoutPage> {
       ],
       child: Scaffold(
         appBar: (isThePage)
-            ? AppBar(
-                elevation: 0,
-                backgroundColor: primaryColor,
-              )
+            ? null
             : AppBar(
                 elevation: 0,
                 backgroundColor: backgroundColor,

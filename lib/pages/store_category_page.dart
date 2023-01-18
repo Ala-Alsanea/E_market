@@ -11,8 +11,7 @@ class StorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
+    return Column(
       children: [
         Container(
           width: double.infinity,
@@ -33,12 +32,13 @@ class StorePage extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         child: Image.asset(
                           'assets/img/png/logoRounded2.png',
                           height: 50,
                           width: 50,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -56,6 +56,6 @@ class StorePage extends StatelessWidget {
           ),
         ),
       ],
-    ));
+    );
   }
 }

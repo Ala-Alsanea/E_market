@@ -15,7 +15,7 @@ class HeaderWithSearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     var search = TextEditingController();
     return Container(
-      margin: const EdgeInsets.only(bottom: 20 * 2.5),
+      margin: const EdgeInsets.only(bottom: 10),
       // It will cover 20% of our total height
       height: size.height * 0.2,
       child: Stack(
@@ -26,6 +26,7 @@ class HeaderWithSearchBox extends StatelessWidget {
               left: 20,
               right: 20,
               bottom: 36 + 20,
+              top: 15,
             ),
             decoration: const BoxDecoration(
               color: primaryColor,
