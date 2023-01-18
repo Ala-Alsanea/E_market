@@ -4,6 +4,8 @@ import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:e_maecket/api/app_notifier.dart';
 import 'package:e_maecket/api/model/store.dart';
+
+import 'package:e_maecket/pages/store_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -100,6 +102,13 @@ class StoreCard extends StatelessWidget {
       onTap: () {
         // !! navigate
         print(id);
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => StoreDetailPage(id: id),
+          ),
+        );
       },
       child: Container(
         width: double.infinity,
