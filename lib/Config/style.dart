@@ -46,6 +46,12 @@ TextStyle headText = GoogleFonts.jaldi(
   color: lightTextColor,
 );
 
+TextStyle normalText = GoogleFonts.jaldi(
+  fontSize: 20,
+  fontWeight: FontWeight.normal,
+  color: lightTextColor,
+);
+
 TextStyle normal_18({color = whiteColor}) => TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.normal,
