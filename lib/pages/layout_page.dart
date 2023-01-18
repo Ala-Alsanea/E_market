@@ -21,6 +21,11 @@ class LayoutPage extends StatefulWidget {
 
 int _selectedIndex = 0;
 bool isThePage = true;
+List _AppBarText = [
+  'Browse',
+  'Categories',
+  'Stores',
+];
 List _listPages = [
   BrowsePage(),
   SearchPage(),
@@ -50,7 +55,8 @@ class _LayoutPageState extends State<LayoutPage> {
             : AppBar(
                 elevation: 0,
                 backgroundColor: backgroundColor,
-                title: Text('E Market', style: bold_24(color: primaryColor)),
+                title: Text(_AppBarText[_selectedIndex],
+                    style: bold_24(color: primaryColor)),
                 centerTitle: true,
               ),
         extendBody: true,
@@ -94,7 +100,7 @@ class _LayoutPageState extends State<LayoutPage> {
               tabs: [
                 GButton(
                   icon: FontAwesomeIcons.house,
-                  text: "Browse",
+                  text: _AppBarText[_selectedIndex],
                   padding: EdgeInsets.only(
                     left: 10.0,
                     right: 10.0,
@@ -104,7 +110,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 ),
                 GButton(
                   icon: FontAwesomeIcons.filter,
-                  text: "Filter",
+                  text: _AppBarText[_selectedIndex],
                   padding: EdgeInsets.only(
                     left: 20.0,
                     right: 20.0,
@@ -114,7 +120,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 ),
                 GButton(
                   icon: FontAwesomeIcons.store,
-                  text: "Store",
+                  text: _AppBarText[_selectedIndex],
                   padding: EdgeInsets.only(
                     left: 20.0,
                     right: 20.0,
