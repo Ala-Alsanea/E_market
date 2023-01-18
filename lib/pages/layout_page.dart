@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:e_maecket/pages/store_category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -23,10 +24,10 @@ bool isThePage = true;
 List _listPages = [
   BrowsePage(),
   SearchPage(),
-  ComparePage(),
+  StorePage(),
 ];
 checkThePage(int index) {
-  isThePage = index != 1 ? true : false;
+  isThePage = index == 0 ? true : false;
 }
 
 class _LayoutPageState extends State<LayoutPage> {
@@ -45,10 +46,7 @@ class _LayoutPageState extends State<LayoutPage> {
       ],
       child: Scaffold(
         appBar: (isThePage)
-            ? AppBar(
-                elevation: 0,
-                backgroundColor: primaryColor,
-              )
+            ? null
             : AppBar(
                 elevation: 0,
                 backgroundColor: backgroundColor,
@@ -115,8 +113,8 @@ class _LayoutPageState extends State<LayoutPage> {
                   ),
                 ),
                 GButton(
-                  icon: FontAwesomeIcons.arrowRightArrowLeft,
-                  text: "Compare",
+                  icon: FontAwesomeIcons.store,
+                  text: "Store",
                   padding: EdgeInsets.only(
                     left: 20.0,
                     right: 20.0,
