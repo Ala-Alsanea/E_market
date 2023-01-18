@@ -3,6 +3,7 @@ import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:e_maecket/api/app_notifier.dart';
 import 'package:e_maecket/api/model/store.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../Config/components/btn_app.dart';
@@ -37,16 +38,45 @@ class _StoreDetailPageState extends State<StoreDetailPage> {
                       Expanded(
                         child: Column(
                           children: <Widget>[
-                            buildStackPorfila(
-                              cover: ConnectApi().Storge +
-                                  snapshot.data![0].attributes!.cover!.data!
-                                      .attributes!.url
-                                      .toString(),
-                              avatar: ConnectApi().Storge +
-                                  snapshot.data![0].attributes!.avatar!.data!
-                                      .attributes!.url
-                                      .toString(),
-                              name: snapshot.data![0].attributes!.name.toString(),
+                            Stack(
+                              children: [
+                                Container(
+                                  child: buildStackPorfila(
+                                    cover: ConnectApi().Storge +
+                                        snapshot.data![0].attributes!.cover!.data!
+                                            .attributes!.url
+                                            .toString(),
+                                    avatar: ConnectApi().Storge +
+                                        snapshot.data![0].attributes!.avatar!.data!
+                                            .attributes!.url
+                                            .toString(),
+                                    name: snapshot.data![0].attributes!.name
+                                        .toString(),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 15.0,
+                                  left: 15.0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: whiteColor, width: 2),
+                                          color: primaryColor.withOpacity(.5),
+                                          borderRadius: BorderRadius.circular(50)),
+                                      child: Icon(
+                                        FontAwesomeIcons.arrowLeft,
+                                        color: Colors.white,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             tap(store: snapshot.data![0]),
                             // tap2()
@@ -134,7 +164,7 @@ class _StoreDetailPageState extends State<StoreDetailPage> {
           backgroundImage: NetworkImage(avatar),
         ),
         SizedBox(
-          width:15,
+          width: 20,
         ),
         buildConten(name)
       ],
