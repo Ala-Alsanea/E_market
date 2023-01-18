@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables
 
+import 'dart:io';
+
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/api/ConnectApi.dart';
 import 'package:e_maecket/pages/detail_page.dart';
@@ -94,7 +96,32 @@ class _CategoryPageState extends State<CategoryPage> {
                             Expanded(
                               child: TextField(
                                 controller: search,
-                                onChanged: ((value) {
+                                onChanged: ((value) async {
+                                  sleep(Duration(seconds: 2));
+                                  print(value);
+                                  widget.title != "Search"
+                                      ? Endpoint =
+                                          await 'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
+                                              widget.title +
+                                              '&filters[\$or][0][model][\$containsi]=' +
+                                              search.text +
+                                              '&filters[\$or][1][brand][name][\$containsi]=' +
+                                              search.text
+                                      : Endpoint = await 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][1][model][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][2][brand][name][\$containsi]=' +
+                                          search.text +
+                                          '&filters[\$or][3][price][\$eq]=' +
+                                          search.text;
+                                  setState(() {
+                                    getProduct =
+                                        notifier.getAllProducts(Endpoint);
+                                  });
+                                }),
+                                onSubmitted: ((value) {
+                                  // sleep(Duration(seconds: 1));
                                   print(value);
                                   widget.title != "Search"
                                       ? Endpoint =
