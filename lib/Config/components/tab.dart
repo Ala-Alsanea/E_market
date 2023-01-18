@@ -1,4 +1,3 @@
-
 import 'package:e_maecket/Config/components/item_list.dart';
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/Config/style.dart';
@@ -16,7 +15,6 @@ class tap extends StatefulWidget {
   Stores? store;
   tap({Key? key, this.store}) : super(key: key);
 
-
   @override
   State<tap> createState() => _tapState();
 }
@@ -24,7 +22,6 @@ class tap extends StatefulWidget {
 class _tapState extends State<tap> {
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
         length: 2,
         child: Expanded(
@@ -52,95 +49,98 @@ class _tapState extends State<tap> {
                 child: TabBarView(children: [
                   //1st tab
                   Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.location!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.black,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.phone,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.phone!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
+                              SizedBox(
+                                width: 6,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.email,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.email!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "description:",
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 6,
+                              Text(
+                                widget.store!.attributes!.location!.toString(),
+                                style: TextStyle(
+                                  fontSize: 17,
                                 ),
-                                description(
-                                  content: widget
-                                      .store!.attributes!.Description!
-                                      .toString(),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.phone,
+                                color: Colors.black,
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                widget.store!.attributes!.phone!.toString(),
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.email,
+                                color: Colors.black,
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                widget.store!.attributes!.email!.toString(),
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "description:",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  description(
+                                    content: widget
+                                        .store!.attributes!.Description!
+                                        .toString(),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
 
@@ -202,10 +202,10 @@ class _tapState extends State<tap> {
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         DetailPage(
-                                                      id: snapshot
-                                                          .data![index].id
-                                                          .toString(),
-                                                    ),
+                                                          id: snapshot
+                                                              .data![index].id
+                                                              .toString(),
+                                                        ),
                                                   ));
                                             });
                                           },
@@ -222,7 +222,7 @@ class _tapState extends State<tap> {
                                   child: Center(
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Check your internet connection... ",
@@ -260,7 +260,6 @@ class _tapState extends State<tap> {
                 ]),
               )
             ],
-
           ),
         ));
   }
