@@ -56,9 +56,7 @@ class _ItemListState extends State<ItemList> {
                   image: NetworkImage(ConnectApi().Storge + widget.image),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(
-                  20.0,
-                ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
             SizedBox(width: getWidth(10)),
