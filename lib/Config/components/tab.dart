@@ -1,3 +1,4 @@
+
 import 'package:e_maecket/Config/components/item_list.dart';
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/Config/style.dart';
@@ -15,6 +16,7 @@ class tap extends StatefulWidget {
   Stores? store;
   tap({Key? key, this.store}) : super(key: key);
 
+
   @override
   State<tap> createState() => _tapState();
 }
@@ -22,6 +24,7 @@ class tap extends StatefulWidget {
 class _tapState extends State<tap> {
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
         length: 2,
         child: Expanded(
@@ -257,6 +260,7 @@ class _tapState extends State<tap> {
                 ]),
               )
             ],
+
           ),
         ));
   }
