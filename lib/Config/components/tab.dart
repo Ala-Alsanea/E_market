@@ -1,4 +1,3 @@
-
 import 'package:e_maecket/Config/components/item_list.dart';
 import 'package:e_maecket/Config/size_config.dart';
 import 'package:e_maecket/Config/style.dart';
@@ -6,6 +5,7 @@ import 'package:e_maecket/api/model/products.dart';
 import 'package:e_maecket/api/model/store.dart';
 import 'package:e_maecket/pages/detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../api/app_notifier.dart';
@@ -16,7 +16,6 @@ class tap extends StatefulWidget {
   Stores? store;
   tap({Key? key, this.store}) : super(key: key);
 
-
   @override
   State<tap> createState() => _tapState();
 }
@@ -24,7 +23,6 @@ class tap extends StatefulWidget {
 class _tapState extends State<tap> {
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
         length: 2,
         child: Expanded(
@@ -34,15 +32,19 @@ class _tapState extends State<tap> {
                 height: 12,
               ),
               Container(
-                color: Color(0xFF2a9d8f),
+                color: primaryColor,
                 child: TabBar(
+                  automaticIndicatorColorAdjustment: true,
                   tabs: [
                     Tab(
-                      text: "Details",
+                      icon: Icon(FontAwesomeIcons.computer),
+
+                      text: "Products",
                       // icon: Icon(Icons.home,color: Colors.white,),
                     ),
                     Tab(
-                      text: "Products",
+                      icon: Icon(FontAwesomeIcons.readme),
+                      text: "Details",
                       // icon: Icon(Icons.home,color: Colors.white,),
                     ),
                   ],
@@ -50,101 +52,6 @@ class _tapState extends State<tap> {
               ),
               Expanded(
                 child: TabBarView(children: [
-                  //1st tab
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.location!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.phone,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.phone!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.email,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              widget.store!.attributes!.email!.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "description:",
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                description(
-                                  content: widget
-                                      .store!.attributes!.Description!
-                                      .toString(),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  //2an tab
                   Container(
                     child: Center(
                       child: Consumer<AppNotifier>(
@@ -257,10 +164,115 @@ class _tapState extends State<tap> {
                       ),
                     ),
                   )
+
+                  //1st tab
+                  ,
+                  ListView(
+                    children: [
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    widget.store!.attributes!.location!
+                                        .toString(),
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.phone,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    widget.store!.attributes!.phone!.toString(),
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.email,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    widget.store!.attributes!.email!.toString(),
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "description:",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 6,
+                                      ),
+                                      description(
+                                        content: widget
+                                            .store!.attributes!.Description!
+                                            .toString(),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //2an tab
                 ]),
               )
             ],
-
           ),
         ));
   }
