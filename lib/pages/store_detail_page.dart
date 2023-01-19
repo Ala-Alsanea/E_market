@@ -181,7 +181,7 @@ class _StoreDetailPageState extends State<StoreDetailPage> {
             ),
             Text(
               name,
-              style: bold_18(color: Colors.black),
+              style: bold_24(color: Colors.black),
             ),
           ],
         ),
