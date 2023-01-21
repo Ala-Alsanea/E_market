@@ -96,30 +96,6 @@ class _CategoryPageState extends State<CategoryPage> {
                             Expanded(
                               child: TextField(
                                 controller: search,
-                                onChanged: ((value) async {
-                                  sleep(Duration(seconds: 2));
-                                  print(value);
-                                  widget.title != "Search"
-                                      ? Endpoint =
-                                          await 'products?populate=*&filters[\$and][0][type][name][\$containsi]=' +
-                                              widget.title +
-                                              '&filters[\$or][0][model][\$containsi]=' +
-                                              search.text +
-                                              '&filters[\$or][1][brand][name][\$containsi]=' +
-                                              search.text
-                                      : Endpoint = await 'products?populate=*&filters[\$or][0][type][name][\$containsi]=' +
-                                          search.text +
-                                          '&filters[\$or][1][model][\$containsi]=' +
-                                          search.text +
-                                          '&filters[\$or][2][brand][name][\$containsi]=' +
-                                          search.text +
-                                          '&filters[\$or][3][price][\$eq]=' +
-                                          search.text;
-                                  setState(() {
-                                    getProduct =
-                                        notifier.getAllProducts(Endpoint);
-                                  });
-                                }),
                                 onSubmitted: ((value) {
                                   // sleep(Duration(seconds: 1));
                                   print(value);

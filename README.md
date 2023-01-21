@@ -1,6 +1,11 @@
 # flutter project for E-Market with Rest API
 
 
+## preview
+
+![alt](_imgReadme/Artboard%201%402x-100.jpg)
+![alt](_imgReadme/Artboard%201%20copy%202@2x-100.jpg)
+![alt](_imgReadme/Artboard%201%20copy@2x-100.jpg)
 ## ToDo
 - enhancement  
   - [X] fix home page scrolling 

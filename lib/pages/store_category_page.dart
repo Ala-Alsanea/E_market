@@ -23,7 +23,7 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
       child: Consumer<AppNotifier>(builder: (context, notifier, child) {
         return FutureBuilder(
             future: notifier.getAllStores('stores?populate=*'),
