@@ -15,7 +15,5 @@
   - [X] get last 4 product in new Arrival 
   - [X] add refresh indicator 
   - [ ] test the app ( to discover unknown bugs ) 
-     
-- adding feature  
-  - [ ] 
+      
 
